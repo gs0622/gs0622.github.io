@@ -9,27 +9,27 @@ categories:
 If you're heavy coder, I believe you will like [colorgcc](http://schlueters.de/colorgcc.html), this tiny script saves your time on digging comlilation errors and warnings.
 Like my example below.
 
-<font size="2"><pre>
+<pre>
 harrypan@harrypan-E6440:~/workspace$ gcc -g -Wall CountInversion.c
 CountInversion.c: In function ‘Merge’:
 CountInversion.c:<font color="blue">23</font><font color="red">:1: error: expected ‘;’ before ‘}’ token</font>
 CountInversion.c:<font color="blue">23</font><font color="yellow">:1: warning: control reaches end of non-void function [-Wreturn-type]</font>
 harrypan@harrypan-E6440:~/workspace$
-</pre></font>
+</pre>
 
-On ubuntu, you can easily get the colorgcc by <code>sudo apt-get install colorgcc</code>, follow by review and build symbolic line
+On ubuntu, you can easily get the colorgcc by <code>sudo apt-get install colorgcc</code>, follow by review and build symbolic links.
 
 1. Review $PATH variable, make sure <code>/usr/local/bin</code> is prior than <code>/usb/bin</code>, which is my installed gcc path
-<font size="2"><pre>
+<pre>
 harrypan@harrypan-E6440:~$ echo $PATH
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-</pre></font>
-2. Make some symbolic links under /usr/local/bin to fulfill your need. 
-<font size="2"><pre>
+</pre>
+2. Make some symbolic links under /usr/local/bin to fulfill your need
+<pre>
 cd /usr/local/bin
 sudo ln -s /usr/bin/colorgcc gcc
 sudo ln -s /usr/bin/colorgcc g++
-</pre></font>
+</pre>
 
 Okay, now enjoy your rest of coding.
 
