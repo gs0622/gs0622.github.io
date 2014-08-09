@@ -9,13 +9,13 @@ categories:
 If you're heavy coder, I believe you will like [colorgcc](http://schlueters.de/colorgcc.html), this tiny script saves your time on digging comlilation errors and warnings.
 Like my example below.
 
-<table><tr><td><pre><font size="2">
-harrypan@harrypan-E6440:~/workspace/github/algo$ gcc -g -Wall CountInversionMergeSort.c
-CountInverdsionMergeSort.c: In function ‘Merge’:
-CountInversionMergeSort.c:<font color="blue">23</font><font color="red">:1: error: expected ‘;’ before ‘}’ token</font>
-CountInversionMergeSort.c:<font color="blue">23</font><font color="yellow">:1: warning: control reaches end of non-void function [-Wreturn-type]</font>
-harrypan@harrypan-E6440:~/workspace/github/algo$</pre></font>
-</td></tr></table>
+<font size="2"><pre>
+harrypan@harrypan-E6440:~/workspace$ gcc -g -Wall CountInversion.c
+CountInversion.c: In function ‘Merge’:
+CountInversion.c:<font color="blue">23</font><font color="red">:1: error: expected ‘;’ before ‘}’ token</font>
+CountInversion.c:<font color="blue">23</font><font color="yellow">:1: warning: control reaches end of non-void function [-Wreturn-type]</font>
+harrypan@harrypan-E6440:~/workspace$
+</pre></font>
 
 On ubuntu, you can easily get the colorgcc by <code>sudo apt-get install colorgcc</code>, follow by review and build symbolic line
 
