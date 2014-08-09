@@ -3,7 +3,7 @@
 # ----------------------- #
 
 url: http://gs0622.github.io
-title: Harry's Blog
+title: Harry's wonderland
 subtitle: Don't Be Evil
 author: Harry Pan
 simple_search: https://www.google.com/search
@@ -99,4 +99,5 @@ disqus_show_comment_count: false
 google_analytics_tracking_id:
 
 # Facebook Like
-facebook_like: false
+facebook_user: harry.pan.6 
+facebook_like: true
