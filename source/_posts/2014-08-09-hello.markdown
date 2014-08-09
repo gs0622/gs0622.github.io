@@ -30,3 +30,6 @@ cd /usr/local/bin
 sudo ln -s /usr/bin/colorgcc gcc
 sudo ln -s /usr/bin/colorgcc g++
 </pre></font>
+
+Okay, now enjoy your rest of coding.
+
