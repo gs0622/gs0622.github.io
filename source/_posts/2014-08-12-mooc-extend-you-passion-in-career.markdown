@@ -17,7 +17,7 @@ Take the LFS101x, Introduction to Linux of edX, as example, I enjoyed it to revi
 There are 18 chapters, depth from beginner to expert, I took time watching it and gain knowledge.
 
 In a nuts shell, take a short time to review your career, interest, passion, then make some decision when you're available.
-It's up to you, no matter how to choose and create for life or work.
+It's up to you, your passion to find something to die for, no matter how to choose for life or work.
 
 -Cheers.
 
