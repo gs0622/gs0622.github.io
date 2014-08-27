@@ -9,8 +9,7 @@
   <meta name="author" content="Harry Pan">
 
   
-  <meta name="description" content="I resigned and studied at home for couple months, I self-studied from MIT OCW to MOOC.
-Recently I found this article is a good summary for MOOC &hellip;">
+  <meta name="description" content="Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all refer to Chromium OS Developer Guide Source TBD Build enter chroot $ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,67 @@ Recently I found this article is a good summary for MOOC &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/08/27/chromium-os-build-notes/">Chromium OS Build Notes</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-27T20:01:09+08:00" pubdate data-updated="true">Aug 27<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all refer to <a href="http://www.chromium.org/chromium-os/developer-guide">Chromium OS Developer Guide</a></p>
+
+<h2>Source</h2>
+
+<p>TBD</p>
+
+<h2>Build</h2>
+
+<h3>enter chroot</h3>
+
+<pre><code>$ cros_sdk
+</code></pre>
+
+<h3>board select</h3>
+
+<pre><code>$ export BOARD=x86-generic
+$ setup_board --board=${BOARD}
+$ build_packages --board=${BOARD}
+$ build_image --board=${BOARD} --noenable_rootfs_verification dev
+</code></pre>
+
+<p></code></p>
+
+<h2>Download</h2>
+
+<p>TBD</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -200,6 +260,10 @@ sudo ln -s /usr/bin/colorgcc g++
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/08/27/chromium-os-build-notes/">Chromium OS Build Notes</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/08/12/mooc-extend-you-passion-in-career/">MOOC: Extend You Passion in Career</a>

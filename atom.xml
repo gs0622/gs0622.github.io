@@ -4,7 +4,7 @@
   <title><![CDATA[Harry's wonderland]]></title>
   <link href="http://gs0622.github.io/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-08-12T18:54:52+08:00</updated>
+  <updated>2014-08-27T20:39:57+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Chromium OS Build Notes]]></title>
+    <link href="http://gs0622.github.io/blog/2014/08/27/chromium-os-build-notes/"/>
+    <updated>2014-08-27T20:01:09+08:00</updated>
+    <id>http://gs0622.github.io/blog/2014/08/27/chromium-os-build-notes</id>
+    <content type="html"><![CDATA[<p>Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all refer to <a href="http://www.chromium.org/chromium-os/developer-guide">Chromium OS Developer Guide</a></p>
+
+<h2>Source</h2>
+
+<p>TBD</p>
+
+<h2>Build</h2>
+
+<h3>enter chroot</h3>
+
+<pre><code>$ cros_sdk
+</code></pre>
+
+<h3>board select</h3>
+
+<pre><code>$ export BOARD=x86-generic
+$ setup_board --board=${BOARD}
+$ build_packages --board=${BOARD}
+$ build_image --board=${BOARD} --noenable_rootfs_verification dev
+</code></pre>
+
+<p></code></p>
+
+<h2>Download</h2>
+
+<p>TBD</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MOOC: Extend You Passion in Career]]></title>
