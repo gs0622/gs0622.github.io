@@ -9,7 +9,7 @@
   <meta name="author" content="Harry Pan">
 
   
-  <meta name="description" content="Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all refer to Chromium OS Developer Guide Source TBD Build enter chroot $ &hellip;">
+  <meta name="description" content="Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all refer to Chromium OS Developer Guide Source TBD Build enter chroot &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -104,15 +104,15 @@
 
 <h3>enter chroot</h3>
 
-<pre><code>$ cros_sdk
+<pre><code>$ ./chromite/bin/cros_sdk
 </code></pre>
 
 <h3>board select</h3>
 
 <pre><code>$ export BOARD=x86-generic
-$ setup_board --board=${BOARD}
-$ build_packages --board=${BOARD}
-$ build_image --board=${BOARD} --noenable_rootfs_verification dev
+$ ./setup_board --board=${BOARD}
+$ ./build_packages --board=${BOARD}
+$ ./build_image --board=${BOARD} --noenable_rootfs_verification dev
 </code></pre>
 
 <p></code></p>

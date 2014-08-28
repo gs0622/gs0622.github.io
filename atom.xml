@@ -4,7 +4,7 @@
   <title><![CDATA[Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-08-28T09:25:17+08:00</updated>
+  <updated>2014-08-28T12:06:11+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -28,15 +28,15 @@
 
 <h3>enter chroot</h3>
 
-<pre><code>$ cros_sdk
+<pre><code>$ ./chromite/bin/cros_sdk
 </code></pre>
 
 <h3>board select</h3>
 
 <pre><code>$ export BOARD=x86-generic
-$ setup_board --board=${BOARD}
-$ build_packages --board=${BOARD}
-$ build_image --board=${BOARD} --noenable_rootfs_verification dev
+$ ./setup_board --board=${BOARD}
+$ ./build_packages --board=${BOARD}
+$ ./build_image --board=${BOARD} --noenable_rootfs_verification dev
 </code></pre>
 
 <p></code></p>
