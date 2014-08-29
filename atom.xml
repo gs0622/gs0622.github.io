@@ -4,7 +4,7 @@
   <title><![CDATA[Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-08-28T12:06:11+08:00</updated>
+  <updated>2014-08-29T15:01:40+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -12,6 +12,65 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git FAQ]]></title>
+    <link href="http://gs0622.github.io/blog/2014/08/29/git-faq/"/>
+    <updated>2014-08-29T13:54:49+08:00</updated>
+    <id>http://gs0622.github.io/blog/2014/08/29/git-faq</id>
+    <content type="html"><![CDATA[<p>I write this FAQ list for git problems, usually you can google on stackoverflow or somewhere&hellip;</p>
+
+<h2>Change user.name/email on local repository</h2>
+
+<p>Sometimes you want to have different user name and email to override git global setting.</p>
+
+<pre><code>$ git config user.name harrypan
+$ git config user.email gs0622@gmail.com
+</code></pre>
+
+<p>Also, you can review it in local git config</p>
+
+<pre><code>$ tail -3 .git/config
+[user]
+    name = harrypan
+    email = harrypan
+</code></pre>
+
+<h2>Rollback remote git repository</h2>
+
+<p>Sometimes you decide to rollback couple commits in remote without revert then push, you can try below tips, however it assumes your local and remote repository are synced.</p>
+
+<h3>Hard reset commits in local repository</h3>
+
+<pre><code>$ git reset --hard HEAD~n
+</code></pre>
+
+<p>Here &lsquo;n&rsquo; refer to commit numbers you want to reset, in case one or two commits you can also use HEAD or HEAD^.</p>
+
+<h3>Force push onto remote</h3>
+
+<pre><code>$ git push -f
+</code></pre>
+
+<h2>GitHub credential helper</h2>
+
+<p>Says you have repositories on GitHub, default/preferred protocol is https, you might be annoyed every push need to input user/password, using credential helper could help you for a period not need credential input</p>
+
+<h3>With git 1.7.9 and later</h3>
+
+<pre><code>$ git config --global credential.helper cache
+</code></pre>
+
+<p>Here its default timeout is 15 min, or you can select a longer time suggested by GitHub help</p>
+
+<pre><code>$ git config --global credential.helper "cache --timeout=3600"
+</code></pre>
+
+<h2>With git before 1.7.9, or any version</h2>
+
+<p>I don&rsquo;t prefer those ways for personal flavor, you can refer to <a href="http://stackoverflow.com/questions/5343068/is-there-a-way-to-skip-password-typing-when-using-https-github">Is there a way to skip password typing when using https:// github</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Chromium OS Build Notes]]></title>

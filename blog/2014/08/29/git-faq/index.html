@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>MOOC: Extend You Passion in Career - Harry's Graffiti</title>
+  <title>Git FAQ - Harry's Graffiti</title>
   <meta name="author" content="Harry Pan">
 
   
-  <meta name="description" content="I resigned and studied at home for couple months, I self-studied from MIT OCW to MOOC.
-Recently I found this article is a good summary for MOOC &hellip;">
+  <meta name="description" content="I write this FAQ list for git problems, usually you can google on stackoverflow or somewhere&hellip; Change user.name/email on local repository &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ Recently I found this article is a good summary for MOOC &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://gs0622.github.io/blog/2014/08/12/mooc-extend-you-passion-in-career">
+  <link rel="canonical" href="http://gs0622.github.io/blog/2014/08/29/git-faq">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Harry's Graffiti" type="application/atom+xml">
@@ -69,7 +68,7 @@ Recently I found this article is a good summary for MOOC &hellip;">
   
   <header>
     
-      <h1 class="entry-title">MOOC: Extend You Passion in Career</h1>
+      <h1 class="entry-title">Git FAQ</h1>
     
     
       <p class="meta">
@@ -85,27 +84,64 @@ Recently I found this article is a good summary for MOOC &hellip;">
   
 
 
-<time datetime="2014-08-12T18:05:17+08:00" pubdate data-updated="true">Aug 12<sup>th</sup>, 2014</time>
+<time datetime="2014-08-29T13:54:49+08:00" pubdate data-updated="true">Aug 29<sup>th</sup>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I resigned and studied at home for couple months, I self-studied from MIT OCW to MOOC.
-Recently I found this article is a good summary for MOOC resource (in Mandarin) that you could evaluate, depend on your willing and passion.</p>
+<div class="entry-content"><p>I write this FAQ list for git problems, usually you can google on stackoverflow or somewhere&hellip;</p>
 
-<p><a href="http://www.thenewslens.com/post/36571/">MOOC不止可汗學院、Coursera和edX：更多大規模開放在線課程介紹</a></p>
+<h2>Change user.name/email on local repository</h2>
 
-<p>In this article, you could pick the MOOC resource in knowledge or in practice, I basically took MIT OCW, Cousera, Udacity, edX, Khan Academy &hellip;etc.
-I love their passion and learn much that I seldom cared about while I was busy.
-Take the LFS101x, Introduction to Linux of edX, as example, I enjoyed it to review my Linux domain knowledge.
-There are 18 chapters, depth from beginner to expert, I took time watching it and gain knowledge.</p>
+<p>Sometimes you want to have different user name and email to override git global setting.</p>
 
-<p>In a nuts shell, take a short time to review your career, interest, passion, then make some decision when you&rsquo;re available.
-It&rsquo;s up to you, your passion to find something to die for, no matter how to choose for life or work.</p>
+<pre><code>$ git config user.name harrypan
+$ git config user.email gs0622@gmail.com
+</code></pre>
 
-<p>-Cheers.</p>
+<p>Also, you can review it in local git config</p>
+
+<pre><code>$ tail -3 .git/config
+[user]
+    name = harrypan
+    email = harrypan
+</code></pre>
+
+<h2>Rollback remote git repository</h2>
+
+<p>Sometimes you decide to rollback couple commits in remote without revert then push, you can try below tips, however it assumes your local and remote repository are synced.</p>
+
+<h3>Hard reset commits in local repository</h3>
+
+<pre><code>$ git reset --hard HEAD~n
+</code></pre>
+
+<p>Here &lsquo;n&rsquo; refer to commit numbers you want to reset, in case one or two commits you can also use HEAD or HEAD^.</p>
+
+<h3>Force push onto remote</h3>
+
+<pre><code>$ git push -f
+</code></pre>
+
+<h2>GitHub credential helper</h2>
+
+<p>Says you have repositories on GitHub, default/preferred protocol is https, you might be annoyed every push need to input user/password, using credential helper could help you for a period not need credential input</p>
+
+<h3>With git 1.7.9 and later</h3>
+
+<pre><code>$ git config --global credential.helper cache
+</code></pre>
+
+<p>Here its default timeout is 15 min, or you can select a longer time suggested by GitHub help</p>
+
+<pre><code>$ git config --global credential.helper "cache --timeout=3600"
+</code></pre>
+
+<h2>With git before 1.7.9, or any version</h2>
+
+<p>I don&rsquo;t prefer those ways for personal flavor, you can refer to <a href="http://stackoverflow.com/questions/5343068/is-there-a-way-to-skip-password-typing-when-using-https-github">Is there a way to skip password typing when using https:// github</a></p>
 </div>
 
 
@@ -128,7 +164,7 @@ It&rsquo;s up to you, your passion to find something to die for, no matter how t
   
 
 
-<time datetime="2014-08-12T18:05:17+08:00" pubdate data-updated="true">Aug 12<sup>th</sup>, 2014</time>
+<time datetime="2014-08-29T13:54:49+08:00" pubdate data-updated="true">Aug 29<sup>th</sup>, 2014</time>
       
 
 
@@ -136,7 +172,7 @@ It&rsquo;s up to you, your passion to find something to die for, no matter how t
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://gs0622.github.io/blog/2014/08/12/mooc-extend-you-passion-in-career/" data-via="gs0622" data-counturl="http://gs0622.github.io/blog/2014/08/12/mooc-extend-you-passion-in-career/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://gs0622.github.io/blog/2014/08/29/git-faq/" data-via="gs0622" data-counturl="http://gs0622.github.io/blog/2014/08/29/git-faq/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -149,10 +185,8 @@ It&rsquo;s up to you, your passion to find something to die for, no matter how t
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/08/09/hello/" title="Previous Post: colorgcc: color your compilation output">&laquo; colorgcc: color your compilation output</a>
+        <a class="basic-alignment left" href="/blog/2014/08/27/chromium-os-build-notes/" title="Previous Post: Chromium OS build notes">&laquo; Chromium OS build notes</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/08/27/chromium-os-build-notes/" title="Next Post: Chromium OS build notes">Chromium OS build notes &raquo;</a>
       
     </p>
   </footer>
