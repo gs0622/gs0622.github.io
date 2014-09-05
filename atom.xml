@@ -4,7 +4,7 @@
   <title><![CDATA[Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-08-29T15:01:40+08:00</updated>
+  <updated>2014-09-05T12:48:25+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -40,14 +40,14 @@ $ git config user.email gs0622@gmail.com
 
 <p>Sometimes you decide to rollback couple commits in remote without revert then push, you can try below tips, however it assumes your local and remote repository are synced.</p>
 
-<h3>Hard reset commits in local repository</h3>
+<h4>Hard reset commits in local repository</h4>
 
 <pre><code>$ git reset --hard HEAD~n
 </code></pre>
 
 <p>Here &lsquo;n&rsquo; refer to commit numbers you want to reset, in case one or two commits you can also use HEAD or HEAD^.</p>
 
-<h3>Force push onto remote</h3>
+<h4>Force push onto remote</h4>
 
 <pre><code>$ git push -f
 </code></pre>
@@ -56,7 +56,7 @@ $ git config user.email gs0622@gmail.com
 
 <p>Says you have repositories on GitHub, default/preferred protocol is https, you might be annoyed every push need to input user/password, using credential helper could help you for a period not need credential input</p>
 
-<h3>With git 1.7.9 and later</h3>
+<h4>With git 1.7.9 and later</h4>
 
 <pre><code>$ git config --global credential.helper cache
 </code></pre>
@@ -66,9 +66,23 @@ $ git config user.email gs0622@gmail.com
 <pre><code>$ git config --global credential.helper "cache --timeout=3600"
 </code></pre>
 
-<h2>With git before 1.7.9, or any version</h2>
+<h4>With git before 1.7.9, or any version</h4>
 
 <p>I don&rsquo;t prefer those ways for personal flavor, you can refer to <a href="http://stackoverflow.com/questions/5343068/is-there-a-way-to-skip-password-typing-when-using-https-github">Is there a way to skip password typing when using https:// github</a></p>
+
+<h2>Mirror a repository</h2>
+
+<p>Base on <a href="https://help.github.com/articles/duplicating-a-repository">GitHub Help: Duplicating a repository</a>, here is my example to mirror <a href="https://gitorious.org/procps">procps-ng</a> from gitorious onto my github</p>
+
+<pre><code>$ # Make a *bare* clone of the repository
+$ git clone --bare https://gitorious.org/procps/procps.git
+# mirror-push onto existing github repository through github UI
+$ cd procps.git/
+$ git push --mirror https://github.com/gs0622/procps
+# clone again through *your* own repository
+$ cd ..
+# git clone https://github.com/gs0622/procps
+</code></pre>
 ]]></content>
   </entry>
   
