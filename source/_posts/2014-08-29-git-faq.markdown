@@ -1,0 +1,54 @@
+---
+layout: post
+title: "Git FAQ"
+date: 2014-08-29 13:54:49 +0800
+comments: true
+categories: 
+---
+
+I write this FAQ list for git problems, usually you can google on stackoverflow or somewhere...
+
+## Change user.name/email on local repository
+Sometimes you want to have different user name and email to override git global setting.
+
+    $ git config user.name harrypan
+    $ git config user.email gs0622@gmail.com
+
+Also, you can review it in local git config
+
+    $ tail -3 .git/config
+    [user]
+        name = harrypan
+        email = harrypan
+
+## Rollback remote git repository
+Sometimes you decide to rollback couple commits in remote without revert then push, you can try below tips, however it assumes your local and remote repository are synced.
+#### Hard reset commits in local repository
+    $ git reset --hard HEAD~n
+Here 'n' refer to commit numbers you want to reset, in case one or two commits you can also use HEAD or HEAD^.
+#### Force push onto remote
+    $ git push -f
+
+## GitHub credential helper
+Says you have repositories on GitHub, default/preferred protocol is https, you might be annoyed every push need to input user/password, using credential helper could help you for a period not need credential input
+
+#### With git 1.7.9 and later
+    $ git config --global credential.helper cache
+Here its default timeout is 15 min, or you can select a longer time suggested by GitHub help
+
+    $ git config --global credential.helper "cache --timeout=3600"
+
+#### With git before 1.7.9, or any version
+I don't prefer those ways for personal flavor, you can refer to [Is there a way to skip password typing when using https:// github](http://stackoverflow.com/questions/5343068/is-there-a-way-to-skip-password-typing-when-using-https-github)
+
+## Mirror a repository
+Base on [GitHub Help: Duplicating a repository](https://help.github.com/articles/duplicating-a-repository), here is my example to mirror [procps-ng](https://gitorious.org/procps) from gitorious onto my github
+
+    $ # Make a *bare* clone of the repository
+    $ git clone --bare https://gitorious.org/procps/procps.git
+    # mirror-push onto existing github repository through github UI
+    $ cd procps.git/
+    $ git push --mirror https://github.com/gs0622/procps
+    # clone again through *your* own repository
+    $ cd ..
+    # git clone https://github.com/gs0622/procps
