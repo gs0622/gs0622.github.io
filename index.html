@@ -219,7 +219,7 @@ $ repo sync
 
 <h4>board select</h4>
 
-<pre><code>$ export BOARD=x86-generic
+<pre><code>$ export BOARD=x86-generic      # change board depend on your device, pick one from overlays
 $ ./setup_board --board=${BOARD}
 $ ./build_packages --board=${BOARD}
 $ ./build_image --board=${BOARD} --noenable_rootfs_verification dev
