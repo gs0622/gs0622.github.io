@@ -20,7 +20,7 @@ Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all 
 #### enter chroot
     $ ./chromite/bin/cros_sdk
 #### board select
-    $ export BOARD=x86-generic
+    $ export BOARD=x86-generic      # change board depend on your device, pick one from overlays
     $ ./setup_board --board=${BOARD}
     $ ./build_packages --board=${BOARD}
     $ ./build_image --board=${BOARD} --noenable_rootfs_verification dev
