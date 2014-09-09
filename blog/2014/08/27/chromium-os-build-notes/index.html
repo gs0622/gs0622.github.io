@@ -9,7 +9,7 @@
   <meta name="author" content="Harry Pan">
 
   
-  <meta name="description" content="Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all refer to Chromium OS Developer Guide Source TBD Build enter chroot &hellip;">
+  <meta name="description" content="Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all refer to Chromium OS Developer Guide Environment $ sudo apt-get &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,18 +93,28 @@
 
 <div class="entry-content"><p>Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all refer to <a href="http://www.chromium.org/chromium-os/developer-guide">Chromium OS Developer Guide</a></p>
 
+<h2>Environment</h2>
+
+<pre><code>$ sudo apt-get install git-core gitk git-gui subversion curl
+$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+$ export PATH=`pwd`/depot_tools:"$PATH"   # better to add it into .bashrc
+</code></pre>
+
 <h2>Source</h2>
 
-<p>TBD</p>
+<pre><code>$ mkdir -p chromiumos &amp;&amp; cd chromiumos
+$ repo init -u https://chromium.googlesource.com/chromiumos/manifest.git --repo-url https://chromium.googlesource.com/external/repo.git
+$ repo sync
+</code></pre>
 
 <h2>Build</h2>
 
-<h3>enter chroot</h3>
+<h4>enter chroot</h4>
 
 <pre><code>$ ./chromite/bin/cros_sdk
 </code></pre>
 
-<h3>board select</h3>
+<h4>board select</h4>
 
 <pre><code>$ export BOARD=x86-generic
 $ ./setup_board --board=${BOARD}
@@ -112,9 +122,16 @@ $ ./build_packages --board=${BOARD}
 $ ./build_image --board=${BOARD} --noenable_rootfs_verification dev
 </code></pre>
 
-<p></code></p>
+<h4>download</h4>
 
-<h2>Download</h2>
+<pre><code>$ cros flash usb:// ${BOARD}/latest     # then boot your device by this USB key
+</code></pre>
+
+<h2>Clean</h2>
+
+<pre><code>$ # delete chroot, do *NOT* use rm -rf chroot
+$ cros_sdk --delete
+</code></pre>
 
 <p>TBD</p>
 </div>
