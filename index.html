@@ -9,7 +9,7 @@
   <meta name="author" content="Harry Pan">
 
   
-  <meta name="description" content="I write this FAQ list for git problems, usually you can google on stackoverflow or somewhere&hellip; Change user.name/email on local repository &hellip;">
+  <meta name="description" content="If you&rsquo;re using Intel I217-LM ethernet on Ubuntu 12.04 LTS, you might get trouble says eth0 is not working on Linux kernel 3.2.x Problem I used &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,87 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/09/intel-i217-lm-ethernet-on-ubuntu-12-dot-04-lts/">Intel I217-LM Ethernet on Ubuntu 12.04 LTS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-09T19:04:52+08:00" pubdate data-updated="true">Sep 9<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you&rsquo;re using Intel I217-LM ethernet on Ubuntu 12.04 LTS, you might get trouble says eth0 is not working on Linux kernel 3.2.x</p>
+
+<h2>Problem</h2>
+
+<p>I used &lsquo;lshw&rsquo; and &lsquo;ifconfig&rsquo; ensured it is detected on PCI but not in NetworkManager</p>
+
+<pre><code>$ sudo lshw -C network
+  *-network
+   description: Ethernet interface
+   product: Ethernet Connection I217-LM
+   vendor: Intel Corporation
+   physical id: 19
+   bus info: pci@0000:00:19.0
+   logical name: eth0
+...
+$ ifconfig
+lo      Link encap:Local Loopback
+        inet addr:127.0.0.1  Mask:255.0.0.0
+        inet6 addr: ::1/128 Scope:Host
+        UP LOOPBACK RUNNING  MTU:16436  Metric:1
+        RX packets:223 errors:0 dropped:0 overruns:0 frame:0
+        TX packets:223 errors:0 dropped:0 overruns:0 carrier:0
+        collisions:0 txqueuelen:0
+        RX bytes:141166 (141.1 KB)  TX bytes:141166 (141.1 KB)
+wlan0   Link encap:Ethernet  HWaddr xx:xx:xx:xx:xx:xx
+        UP BROADCAST MULTICAST  MTU:1500  Metric:1
+        RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+        TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+        collisions:0 txqueuelen:1000
+        RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+</code></pre>
+
+<h2>Solution</h2>
+
+<p>By <a href="http://askubuntu.com/questions/310442/intel-i217lm-ethernet-controller-not-detected-by-ubuntu-12-04lts?#315922">StackOverflow</a> I found potential cause due to I217 driver available since Linux 3.5.x however my Ubuntu 12.04 still using 3.2.0-29, probably it could be found in linux-backports-modules however I did not go the way.</p>
+
+<p>I followed the hint to <a href="http://www.intel.com/support/network/sb/cs-032514.htm">Intel e1000e drivers page</a>, get the source then built on my laptop</p>
+
+<pre><code>$ tar zxf e1000e-&lt;x.x.x&gt;.tar.gz
+$ cd e1000e-&lt;x.x.x&gt;/src/
+$ sudo make install
+$ modprobe e1000e
+$ ifconfig
+</code></pre>
+
+<p>Have fun on your eth0</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -377,6 +458,10 @@ sudo ln -s /usr/bin/colorgcc g++
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/09/09/intel-i217-lm-ethernet-on-ubuntu-12-dot-04-lts/">Intel I217-LM Ethernet on Ubuntu 12.04 LTS</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/08/29/git-faq/">Git FAQ</a>
