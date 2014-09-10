@@ -4,7 +4,7 @@
   <title><![CDATA[Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-09T19:44:18+08:00</updated>
+  <updated>2014-09-10T15:02:01+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Administration Notes]]></title>
+    <link href="http://gs0622.github.io/blog/2014/09/10/linux-administration-notes/"/>
+    <updated>2014-09-10T11:28:23+08:00</updated>
+    <id>http://gs0622.github.io/blog/2014/09/10/linux-administration-notes</id>
+    <content type="html"><![CDATA[<p>Here is a memo of Linux workstation administration FAQs</p>
+
+<h2>Add new hard disk</h2>
+
+<h4>Find new disk to setup</h4>
+
+<pre><code>$ sudo fdisk -l
+</code></pre>
+
+<p><img src="http://gs0622.github.io/images/20140910_list_partition.png" width="600" height="500" title="find new disk to setup" ></p>
+
+<h4>Create extend/logical partition</h4>
+
+<pre><code>Command: n -&gt; e -&gt; enter (default) -&gt; enter (default)
+</code></pre>
+
+<p><img src="http://gs0622.github.io/images/20140910_ext_partition.png" width="600" height="500" title="create extended partition" ></p>
+
+<pre><code>Command: n -&gt; l -&gt; enter (default) -&gt; enter (default)
+</code></pre>
+
+<p><img src="http://gs0622.github.io/images/20140910_logical_partition.png" width="600" height="500" title="create logical partition" ></p>
+
+<h4>Exame then write partition table to disk</h4>
+
+<pre><code>Command: p (print) -&gt; w (write)
+</code></pre>
+
+<p><img src="http://gs0622.github.io/images/20140910_write_table.png" width="600" height="500" title="exame then write partition table" ></p>
+
+<h4>Format new disk to ext4</h4>
+
+<pre><code>$ sudo mkfs.ext4 /dev/sdb5  # Notice! change sdb to sdX depend on your case
+</code></pre>
+
+<p><img src="http://gs0622.github.io/images/20140910_format_disk.png" width="600" height="500" title="exame partition table" ></p>
+
+<h4>Mount new disk</h4>
+
+<pre><code>$ mkdir -p /mydisk
+$ chmod 777 /mydisk
+$ mount -t ext4 /dev/sdb5 /mydisk
+</code></pre>
+
+<h4>Add disk into fstab by UUID</h4>
+
+<pre><code>$ sudo blkid
+$ sudo vim /etc/fstab   # add 128-bit UUID of /dev/sdb5 into last line
+$ tail -n 1 /etc/fstab
+UUID=a1cf9f6e-dxxxx-xxxx-xxxx-xxxxxxx1eccf /mydisk  ext4    errors=remount-ro   0   1
+</code></pre>
+
+<p><img src="http://gs0622.github.io/images/20140910_find_uuid.png" width="600" height="500" title="find uuid" ></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Intel I217-LM Ethernet on Ubuntu 12.04 LTS]]></title>

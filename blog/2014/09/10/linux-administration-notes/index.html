@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Git FAQ - Harry's Graffiti</title>
+  <title>Linux Administration Notes - Harry's Graffiti</title>
   <meta name="author" content="Harry Pan">
 
   
-  <meta name="description" content="I write this FAQ list for git problems, usually you can google on stackoverflow or somewhere&hellip; Change user.name/email on local repository &hellip;">
+  <meta name="description" content="Here is a memo of Linux workstation administration FAQs Add new hard disk Find new disk to setup $ sudo fdisk -l Create extend/logical partition &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://gs0622.github.io/blog/2014/08/29/git-faq">
+  <link rel="canonical" href="http://gs0622.github.io/blog/2014/09/10/linux-administration-notes">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Harry's Graffiti" type="application/atom+xml">
@@ -68,7 +68,7 @@
   
   <header>
     
-      <h1 class="entry-title">Git FAQ</h1>
+      <h1 class="entry-title">Linux Administration Notes</h1>
     
     
       <p class="meta">
@@ -84,78 +84,66 @@
   
 
 
-<time datetime="2014-08-29T13:54:49+08:00" pubdate data-updated="true">Aug 29<sup>th</sup>, 2014</time>
+<time datetime="2014-09-10T11:28:23+08:00" pubdate data-updated="true">Sep 10<sup>th</sup>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I write this FAQ list for git problems, usually you can google on stackoverflow or somewhere&hellip;</p>
+<div class="entry-content"><p>Here is a memo of Linux workstation administration FAQs</p>
 
-<h2>Change user.name/email on local repository</h2>
+<h2>Add new hard disk</h2>
 
-<p>Sometimes you want to have different user name and email to override git global setting.</p>
+<h4>Find new disk to setup</h4>
 
-<pre><code>$ git config user.name harrypan
-$ git config user.email gs0622@gmail.com
+<pre><code>$ sudo fdisk -l
 </code></pre>
 
-<p>Also, you can review it in local git config</p>
+<p><img src="/images/20140910_list_partition.png" width="600" height="500" title="find new disk to setup" ></p>
 
-<pre><code>$ tail -3 .git/config
-[user]
-    name = harrypan
-    email = harrypan
+<h4>Create extend/logical partition</h4>
+
+<pre><code>Command: n -&gt; e -&gt; enter (default) -&gt; enter (default)
 </code></pre>
 
-<h2>Rollback remote git repository</h2>
+<p><img src="/images/20140910_ext_partition.png" width="600" height="500" title="create extended partition" ></p>
 
-<p>Sometimes you decide to rollback couple commits in remote without revert then push, you can try below tips, however it assumes your local and remote repository are synced.</p>
-
-<h4>Hard reset commits in local repository</h4>
-
-<pre><code>$ git reset --hard HEAD~n
+<pre><code>Command: n -&gt; l -&gt; enter (default) -&gt; enter (default)
 </code></pre>
 
-<p>Here &lsquo;n&rsquo; refer to commit numbers you want to reset, in case one or two commits you can also use HEAD or HEAD^.</p>
+<p><img src="/images/20140910_logical_partition.png" width="600" height="500" title="create logical partition" ></p>
 
-<h4>Force push onto remote</h4>
+<h4>Exame then write partition table to disk</h4>
 
-<pre><code>$ git push -f
+<pre><code>Command: p (print) -&gt; w (write)
 </code></pre>
 
-<h2>GitHub credential helper</h2>
+<p><img src="/images/20140910_write_table.png" width="600" height="500" title="exame then write partition table" ></p>
 
-<p>Says you have repositories on GitHub, default/preferred protocol is https, you might be annoyed every push need to input user/password, using credential helper could help you for a period not need credential input</p>
+<h4>Format new disk to ext4</h4>
 
-<h4>With git 1.7.9 and later</h4>
-
-<pre><code>$ git config --global credential.helper cache
+<pre><code>$ sudo mkfs.ext4 /dev/sdb5  # Notice! change sdb to sdX depend on your case
 </code></pre>
 
-<p>Here its default timeout is 15 min, or you can select a longer time suggested by GitHub help</p>
+<p><img src="/images/20140910_format_disk.png" width="600" height="500" title="exame partition table" ></p>
 
-<pre><code>$ git config --global credential.helper "cache --timeout=3600"
+<h4>Mount new disk</h4>
+
+<pre><code>$ mkdir -p /mydisk
+$ chmod 777 /mydisk
+$ mount -t ext4 /dev/sdb5 /mydisk
 </code></pre>
 
-<h4>With git before 1.7.9, or any version</h4>
+<h4>Add disk into fstab by UUID</h4>
 
-<p>I don&rsquo;t prefer those ways for personal flavor, you can refer to <a href="http://stackoverflow.com/questions/5343068/is-there-a-way-to-skip-password-typing-when-using-https-github">Is there a way to skip password typing when using https:// github</a></p>
-
-<h2>Mirror a repository</h2>
-
-<p>Base on <a href="https://help.github.com/articles/duplicating-a-repository">GitHub Help: Duplicating a repository</a>, here is my example to mirror <a href="https://gitorious.org/procps">procps-ng</a> from gitorious onto my github</p>
-
-<pre><code>$ # Make a *bare* clone of the repository
-$ git clone --bare https://gitorious.org/procps/procps.git
-# mirror-push onto existing github repository through github UI
-$ cd procps.git/
-$ git push --mirror https://github.com/gs0622/procps
-# clone again through *your* own repository
-$ cd ..
-# git clone https://github.com/gs0622/procps
+<pre><code>$ sudo blkid
+$ sudo vim /etc/fstab   # add 128-bit UUID of /dev/sdb5 into last line
+$ tail -n 1 /etc/fstab
+UUID=a1cf9f6e-dxxxx-xxxx-xxxx-xxxxxxx1eccf /mydisk  ext4    errors=remount-ro   0   1
 </code></pre>
+
+<p><img src="/images/20140910_find_uuid.png" width="600" height="500" title="find uuid" ></p>
 </div>
 
 
@@ -178,7 +166,7 @@ $ cd ..
   
 
 
-<time datetime="2014-08-29T13:54:49+08:00" pubdate data-updated="true">Aug 29<sup>th</sup>, 2014</time>
+<time datetime="2014-09-10T11:28:23+08:00" pubdate data-updated="true">Sep 10<sup>th</sup>, 2014</time>
       
 
 
@@ -186,7 +174,7 @@ $ cd ..
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://gs0622.github.io/blog/2014/08/29/git-faq/" data-via="gs0622" data-counturl="http://gs0622.github.io/blog/2014/08/29/git-faq/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://gs0622.github.io/blog/2014/09/10/linux-administration-notes/" data-via="gs0622" data-counturl="http://gs0622.github.io/blog/2014/09/10/linux-administration-notes/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -199,10 +187,8 @@ $ cd ..
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/08/27/chromium-os-build-notes/" title="Previous Post: Chromium OS build notes">&laquo; Chromium OS build notes</a>
+        <a class="basic-alignment left" href="/blog/2014/09/09/intel-i217-lm-ethernet-on-ubuntu-12-dot-04-lts/" title="Previous Post: Intel I217-LM ethernet on Ubuntu 12.04 LTS">&laquo; Intel I217-LM ethernet on Ubuntu 12.04 LTS</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/09/09/intel-i217-lm-ethernet-on-ubuntu-12-dot-04-lts/" title="Next Post: Intel I217-LM ethernet on Ubuntu 12.04 LTS">Intel I217-LM ethernet on Ubuntu 12.04 LTS &raquo;</a>
       
     </p>
   </footer>

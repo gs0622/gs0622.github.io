@@ -9,7 +9,7 @@
   <meta name="author" content="Harry Pan">
 
   
-  <meta name="description" content="If you&rsquo;re using Intel I217-LM ethernet on Ubuntu 12.04 LTS, you might get trouble says eth0 is not working on Linux kernel 3.2.x Problem I used &hellip;">
+  <meta name="description" content="Here is a memo of Linux workstation administration FAQs Add new hard disk Find new disk to setup $ sudo fdisk -l Create extend/logical partition &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,94 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/10/linux-administration-notes/">Linux Administration Notes</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-10T11:28:23+08:00" pubdate data-updated="true">Sep 10<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Here is a memo of Linux workstation administration FAQs</p>
+
+<h2>Add new hard disk</h2>
+
+<h4>Find new disk to setup</h4>
+
+<pre><code>$ sudo fdisk -l
+</code></pre>
+
+<p><img src="/images/20140910_list_partition.png" width="600" height="500" title="find new disk to setup" ></p>
+
+<h4>Create extend/logical partition</h4>
+
+<pre><code>Command: n -&gt; e -&gt; enter (default) -&gt; enter (default)
+</code></pre>
+
+<p><img src="/images/20140910_ext_partition.png" width="600" height="500" title="create extended partition" ></p>
+
+<pre><code>Command: n -&gt; l -&gt; enter (default) -&gt; enter (default)
+</code></pre>
+
+<p><img src="/images/20140910_logical_partition.png" width="600" height="500" title="create logical partition" ></p>
+
+<h4>Exame then write partition table to disk</h4>
+
+<pre><code>Command: p (print) -&gt; w (write)
+</code></pre>
+
+<p><img src="/images/20140910_write_table.png" width="600" height="500" title="exame then write partition table" ></p>
+
+<h4>Format new disk to ext4</h4>
+
+<pre><code>$ sudo mkfs.ext4 /dev/sdb5  # Notice! change sdb to sdX depend on your case
+</code></pre>
+
+<p><img src="/images/20140910_format_disk.png" width="600" height="500" title="exame partition table" ></p>
+
+<h4>Mount new disk</h4>
+
+<pre><code>$ mkdir -p /mydisk
+$ chmod 777 /mydisk
+$ mount -t ext4 /dev/sdb5 /mydisk
+</code></pre>
+
+<h4>Add disk into fstab by UUID</h4>
+
+<pre><code>$ sudo blkid
+$ sudo vim /etc/fstab   # add 128-bit UUID of /dev/sdb5 into last line
+$ tail -n 1 /etc/fstab
+UUID=a1cf9f6e-dxxxx-xxxx-xxxx-xxxxxxx1eccf /mydisk  ext4    errors=remount-ro   0   1
+</code></pre>
+
+<p><img src="/images/20140910_find_uuid.png" width="600" height="500" title="find uuid" ></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -460,6 +548,10 @@ sudo ln -s /usr/bin/colorgcc g++
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/10/linux-administration-notes/">Linux Administration Notes</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/09/09/intel-i217-lm-ethernet-on-ubuntu-12-dot-04-lts/">Intel I217-LM Ethernet on Ubuntu 12.04 LTS</a>
       </li>
     
@@ -473,10 +565,6 @@ sudo ln -s /usr/bin/colorgcc g++
     
       <li class="post">
         <a href="/blog/2014/08/12/mooc-extend-you-passion-in-career/">MOOC: Extend You Passion in Career</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/08/09/hello/">Colorgcc: Color Your Compilation Output</a>
       </li>
     
   </ul>
