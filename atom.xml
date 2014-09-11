@@ -4,7 +4,7 @@
   <title><![CDATA[Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-10T15:02:01+08:00</updated>
+  <updated>2014-09-11T20:14:36+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -198,6 +198,57 @@ $ git push --mirror https://github.com/gs0622/procps
 $ cd ..
 # git clone https://github.com/gs0622/procps
 </code></pre>
+
+<h2>Git 2.0 global variable push.default</h2>
+
+<p>You might be confusing at below warning after updated git to 2.0+</p>
+
+<pre><code>
+$ git push
+warning: push.default is unset; its implicit value has changed in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the traditional behavior, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+When push.default is set to 'matching', git will push local branches
+to the remote branches that already exist with the same name.
+
+Since Git 2.0, Git defaults to the more conservative 'simple'
+behavior, which only pushes the current branch to the corresponding
+remote branch that 'git pull' uses to update the current branch.
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+</code></pre>
+
+
+<p>The thing is since git 2.0 adding new global variable to define <strong>git-push</strong>  behavior.
+Grab the description from <a href="https://www.kernel.org/pub/software/scm/git/docs/git-config.html">git-config menu</a></p>
+
+<pre><code>
+push.default
+Defines the action git push should take if no refspec is given on the command line, no refspec is configured in the remote, and no refspec is implied by any of the options given on the command line. Possible values are:
+
+nothing - do not push anything.
+
+matching - push all branches having the same name in both ends. This is for those who prepare all the branches into a publishable shape and then push them out with a single command. It is not appropriate for pushing into a repository shared by multiple users, since locally stalled branches will attempt a non-fast forward push if other users updated the branch. 
+This is currently the default, but Git 2.0 will change the default to simple.
+
+upstream - push the current branch to its upstream branch. With this, git push will update the same remote ref as the one which is merged by git pull, making push and pull symmetrical. See "branch.<name>.merge" for how to configure the upstream branch.
+
+simple - like upstream, but refuses to push if the upstream branch’s name is different from the local one. This is the safest option and is well-suited for beginners. It will become the default in Git 2.0.
+
+current - push the current branch to a branch of the same name.
+</code></pre>
+
+
+<p>In a nuts shell, set <strong>push.default</strong> as <strong>simple</strong> might be a good start, more conservative to avoid beginners making mistake.</p>
 ]]></content>
   </entry>
   
