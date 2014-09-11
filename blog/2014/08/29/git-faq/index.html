@@ -207,6 +207,14 @@ current - push the current branch to a branch of the same name.
 
 
 <p>In a nuts shell, set <strong>push.default</strong> as <strong>simple</strong> might be a good start, more conservative to avoid beginners making mistake.</p>
+
+<p><strong>SIDE NOTE</strong>: you can also config the variable to local repository, it then appears in local .git/config only</p>
+
+<pre><code>$ git config push.default simple
+$ tail -n2 .git/config
+[push]
+        default = simple
+</code></pre>
 </div>
 
 

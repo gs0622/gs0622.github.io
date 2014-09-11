@@ -4,7 +4,7 @@
   <title><![CDATA[Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-11T20:14:36+08:00</updated>
+  <updated>2014-09-11T20:25:51+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -249,6 +249,14 @@ current - push the current branch to a branch of the same name.
 
 
 <p>In a nuts shell, set <strong>push.default</strong> as <strong>simple</strong> might be a good start, more conservative to avoid beginners making mistake.</p>
+
+<p><strong>SIDE NOTE</strong>: you can also config the variable to local repository, it then appears in local .git/config only</p>
+
+<pre><code>$ git config push.default simple
+$ tail -n2 .git/config
+[push]
+        default = simple
+</code></pre>
 ]]></content>
   </entry>
   
