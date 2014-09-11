@@ -96,3 +96,11 @@ simple - like upstream, but refuses to push if the upstream branch’s name is d
 current - push the current branch to a branch of the same name.
 </code></pre>
 In a nuts shell, set **push.default** as **simple** might be a good start, more conservative to avoid beginners making mistake.
+
+**SIDE NOTE**: you can also config the variable to local repository, it then appears in local .git/config only
+
+    $ git config push.default simple
+    $ tail -n2 .git/config
+    [push]
+            default = simple
+
