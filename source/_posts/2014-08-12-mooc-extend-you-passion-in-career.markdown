@@ -3,7 +3,7 @@ layout: post
 title: "MOOC: Extend you passion in career"
 date: 2014-08-12 18:05:17 +0800
 comments: true
-categories: 
+categories: MOOC
 ---
 
 I resigned and studied at home for couple months, I self-studied from MIT OCW to MOOC.

@@ -3,7 +3,7 @@ layout: post
 title: "Git FAQ"
 date: 2014-08-29 13:54:49 +0800
 comments: true
-categories: 
+categories: git
 ---
 
 I write this FAQ list for git problems, usually you can google on stackoverflow or somewhere...

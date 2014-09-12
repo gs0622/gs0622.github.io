@@ -3,7 +3,7 @@ layout: post
 title: "Linux administration notes"
 date: 2014-09-10 11:28:23 +0800
 comments: true
-categories: 
+categories: Linux Ubuntu
 ---
 
 Here is a memo of Linux workstation administration FAQs
