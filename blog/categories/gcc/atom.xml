@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Gcc | Harry's Graffiti]]></title>
+  <link href="http://gs0622.github.io/blog/categories/gcc/atom.xml" rel="self"/>
+  <link href="http://gs0622.github.io/"/>
+  <updated>2014-09-12T13:05:31+08:00</updated>
+  <id>http://gs0622.github.io/</id>
+  <author>
+    <name><![CDATA[Harry Pan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Colorgcc: Color Your Compilation Output]]></title>
+    <link href="http://gs0622.github.io/blog/2014/08/09/hello/"/>
+    <updated>2014-08-09T17:42:31+08:00</updated>
+    <id>http://gs0622.github.io/blog/2014/08/09/hello</id>
+    <content type="html"><![CDATA[<p>If you&rsquo;re heavy coder, I believe you will like <a href="http://schlueters.de/colorgcc.html">colorgcc</a>, this tiny script saves your time on digging comlilation errors and warnings.
+Like my example below.</p>
+
+<pre>
+harrypan@harrypan-E6440:~/workspace$ gcc -g -Wall CountInversion.c
+CountInversion.c: In function ‘Merge’:
+CountInversion.c:<font color="blue">23</font><font color="red">:1: error: expected ‘;’ before ‘}’ token</font>
+CountInversion.c:<font color="blue">23</font><font color="yellow">:1: warning: control reaches end of non-void function [-Wreturn-type]</font>
+harrypan@harrypan-E6440:~/workspace$
+</pre>
+
+
+<p>On ubuntu, you can easily get the colorgcc by <code>sudo apt-get install colorgcc</code>, follow by review and build symbolic links.</p>
+
+<ol>
+<li>Review $PATH variable, make sure <code>/usr/local/bin</code> is prior than <code>/usb/bin</code>, which is my installed gcc path</li>
+</ol>
+
+
+<pre>
+harrypan@harrypan-E6440:~$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+</pre>
+
+
+<ol>
+<li>Make some symbolic links under /usr/local/bin to fulfill your need</li>
+</ol>
+
+
+<pre>
+cd /usr/local/bin
+sudo ln -s /usr/bin/colorgcc gcc
+sudo ln -s /usr/bin/colorgcc g++
+</pre>
+
+
+<p>Okay, now enjoy your rest of coding.</p>
+]]></content>
+  </entry>
+  
+</feed>

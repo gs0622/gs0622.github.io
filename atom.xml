@@ -4,7 +4,7 @@
   <title><![CDATA[Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-11T20:25:51+08:00</updated>
+  <updated>2014-09-12T13:05:31+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -75,7 +75,7 @@ UUID=a1cf9f6e-dxxxx-xxxx-xxxx-xxxxxxx1eccf /mydisk  ext4    errors=remount-ro   
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Intel I217-LM Ethernet on Ubuntu 12.04 LTS]]></title>
+    <title type="html"><![CDATA[Intel I217-LM Ethernet on Ubuntu 12.04]]></title>
     <link href="http://gs0622.github.io/blog/2014/09/09/intel-i217-lm-ethernet-on-ubuntu-12-dot-04-lts/"/>
     <updated>2014-09-09T19:04:52+08:00</updated>
     <id>http://gs0622.github.io/blog/2014/09/09/intel-i217-lm-ethernet-on-ubuntu-12-dot-04-lts</id>

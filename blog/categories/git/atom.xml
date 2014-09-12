@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Git | Harry's Graffiti]]></title>
+  <link href="http://gs0622.github.io/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://gs0622.github.io/"/>
+  <updated>2014-09-12T13:05:31+08:00</updated>
+  <id>http://gs0622.github.io/</id>
+  <author>
+    <name><![CDATA[Harry Pan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Git FAQ]]></title>
+    <link href="http://gs0622.github.io/blog/2014/08/29/git-faq/"/>
+    <updated>2014-08-29T13:54:49+08:00</updated>
+    <id>http://gs0622.github.io/blog/2014/08/29/git-faq</id>
+    <content type="html"><![CDATA[<p>I write this FAQ list for git problems, usually you can google on stackoverflow or somewhere&hellip;</p>
+
+<h2>Change user.name/email on local repository</h2>
+
+<p>Sometimes you want to have different user name and email to override git global setting.</p>
+
+<pre><code>$ git config user.name harrypan
+$ git config user.email gs0622@gmail.com
+</code></pre>
+
+<p>Also, you can review it in local git config</p>
+
+<pre><code>$ tail -3 .git/config
+[user]
+    name = harrypan
+    email = harrypan
+</code></pre>
+
+<h2>Rollback remote git repository</h2>
+
+<p>Sometimes you decide to rollback couple commits in remote without revert then push, you can try below tips, however it assumes your local and remote repository are synced.</p>
+
+<h4>Hard reset commits in local repository</h4>
+
+<pre><code>$ git reset --hard HEAD~n
+</code></pre>
+
+<p>Here &lsquo;n&rsquo; refer to commit numbers you want to reset, in case one or two commits you can also use HEAD or HEAD^.</p>
+
+<h4>Force push onto remote</h4>
+
+<pre><code>$ git push -f
+</code></pre>
+
+<h2>GitHub credential helper</h2>
+
+<p>Says you have repositories on GitHub, default/preferred protocol is https, you might be annoyed every push need to input user/password, using credential helper could help you for a period not need credential input</p>
+
+<h4>With git 1.7.9 and later</h4>
+
+<pre><code>$ git config --global credential.helper cache
+</code></pre>
+
+<p>Here its default timeout is 15 min, or you can select a longer time suggested by GitHub help</p>
+
+<pre><code>$ git config --global credential.helper "cache --timeout=3600"
+</code></pre>
+
+<h4>With git before 1.7.9, or any version</h4>
+
+<p>I don&rsquo;t prefer those ways for personal flavor, you can refer to <a href="http://stackoverflow.com/questions/5343068/is-there-a-way-to-skip-password-typing-when-using-https-github">Is there a way to skip password typing when using https:// github</a></p>
+
+<h2>Mirror a repository</h2>
+
+<p>Base on <a href="https://help.github.com/articles/duplicating-a-repository">GitHub Help: Duplicating a repository</a>, here is my example to mirror <a href="https://gitorious.org/procps">procps-ng</a> from gitorious onto my github</p>
+
+<pre><code>$ # Make a *bare* clone of the repository
+$ git clone --bare https://gitorious.org/procps/procps.git
+# mirror-push onto existing github repository through github UI
+$ cd procps.git/
+$ git push --mirror https://github.com/gs0622/procps
+# clone again through *your* own repository
+$ cd ..
+# git clone https://github.com/gs0622/procps
+</code></pre>
+
+<h2>Git 2.0 global variable push.default</h2>
+
+<p>You might be confusing at below warning after updated git to 2.0+</p>
+
+<pre><code>
+$ git push
+warning: push.default is unset; its implicit value has changed in
+Git 2.0 from 'matching' to 'simple'. To squelch this message
+and maintain the traditional behavior, use:
+
+  git config --global push.default matching
+
+To squelch this message and adopt the new behavior now, use:
+
+  git config --global push.default simple
+
+When push.default is set to 'matching', git will push local branches
+to the remote branches that already exist with the same name.
+
+Since Git 2.0, Git defaults to the more conservative 'simple'
+behavior, which only pushes the current branch to the corresponding
+remote branch that 'git pull' uses to update the current branch.
+
+See 'git help config' and search for 'push.default' for further information.
+(the 'simple' mode was introduced in Git 1.7.11. Use the similar mode
+'current' instead of 'simple' if you sometimes use older versions of Git)
+</code></pre>
+
+
+<p>The thing is since git 2.0 adding new global variable to define <strong>git-push</strong>  behavior.
+Grab the description from <a href="https://www.kernel.org/pub/software/scm/git/docs/git-config.html">git-config menu</a></p>
+
+<pre><code>
+push.default
+Defines the action git push should take if no refspec is given on the command line, no refspec is configured in the remote, and no refspec is implied by any of the options given on the command line. Possible values are:
+
+nothing - do not push anything.
+
+matching - push all branches having the same name in both ends. This is for those who prepare all the branches into a publishable shape and then push them out with a single command. It is not appropriate for pushing into a repository shared by multiple users, since locally stalled branches will attempt a non-fast forward push if other users updated the branch. 
+This is currently the default, but Git 2.0 will change the default to simple.
+
+upstream - push the current branch to its upstream branch. With this, git push will update the same remote ref as the one which is merged by git pull, making push and pull symmetrical. See "branch.<name>.merge" for how to configure the upstream branch.
+
+simple - like upstream, but refuses to push if the upstream branch’s name is different from the local one. This is the safest option and is well-suited for beginners. It will become the default in Git 2.0.
+
+current - push the current branch to a branch of the same name.
+</code></pre>
+
+
+<p>In a nuts shell, set <strong>push.default</strong> as <strong>simple</strong> might be a good start, more conservative to avoid beginners making mistake.</p>
+
+<p><strong>SIDE NOTE</strong>: you can also config the variable to local repository, it then appears in local .git/config only</p>
+
+<pre><code>$ git config push.default simple
+$ tail -n2 .git/config
+[push]
+        default = simple
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | Harry's Graffiti]]></title>
+  <link href="http://gs0622.github.io/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://gs0622.github.io/"/>
+  <updated>2014-09-12T13:05:31+08:00</updated>
+  <id>http://gs0622.github.io/</id>
+  <author>
+    <name><![CDATA[Harry Pan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Administration Notes]]></title>
+    <link href="http://gs0622.github.io/blog/2014/09/10/linux-administration-notes/"/>
+    <updated>2014-09-10T11:28:23+08:00</updated>
+    <id>http://gs0622.github.io/blog/2014/09/10/linux-administration-notes</id>
+    <content type="html"><![CDATA[<p>Here is a memo of Linux workstation administration FAQs</p>
+
+<h2>Add new hard disk</h2>
+
+<h4>Find new disk to setup</h4>
+
+<pre><code>$ sudo fdisk -l
+</code></pre>
+
+<p><img src="/images/20140910_list_partition.png" width="600" height="500" title="find new disk to setup" ></p>
+
+<h4>Create extend/logical partition</h4>
+
+<pre><code>Command: n -&gt; e -&gt; enter (default) -&gt; enter (default)
+</code></pre>
+
+<p><img src="/images/20140910_ext_partition.png" width="600" height="500" title="create extended partition" ></p>
+
+<pre><code>Command: n -&gt; l -&gt; enter (default) -&gt; enter (default)
+</code></pre>
+
+<p><img src="/images/20140910_logical_partition.png" width="600" height="500" title="create logical partition" ></p>
+
+<h4>Exame then write partition table to disk</h4>
+
+<pre><code>Command: p (print) -&gt; w (write)
+</code></pre>
+
+<p><img src="/images/20140910_write_table.png" width="600" height="500" title="exame then write partition table" ></p>
+
+<h4>Format new disk to ext4</h4>
+
+<pre><code>$ sudo mkfs.ext4 /dev/sdb5  # Notice! change sdb to sdX depend on your case
+</code></pre>
+
+<p><img src="/images/20140910_format_disk.png" width="600" height="500" title="exame partition table" ></p>
+
+<h4>Mount new disk</h4>
+
+<pre><code>$ mkdir -p /mydisk
+$ chmod 777 /mydisk
+$ mount -t ext4 /dev/sdb5 /mydisk
+</code></pre>
+
+<h4>Add disk into fstab by UUID</h4>
+
+<pre><code>$ sudo blkid
+$ sudo vim /etc/fstab   # add 128-bit UUID of /dev/sdb5 into last line
+$ tail -n 1 /etc/fstab
+UUID=a1cf9f6e-dxxxx-xxxx-xxxx-xxxxxxx1eccf /mydisk  ext4    errors=remount-ro   0   1
+</code></pre>
+
+<p><img src="/images/20140910_find_uuid.png" width="600" height="500" title="find uuid" ></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chromium OS Build Notes]]></title>
+    <link href="http://gs0622.github.io/blog/2014/08/27/chromium-os-build-notes/"/>
+    <updated>2014-08-27T20:01:09+08:00</updated>
+    <id>http://gs0622.github.io/blog/2014/08/27/chromium-os-build-notes</id>
+    <content type="html"><![CDATA[<p>Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all refer to <a href="http://www.chromium.org/chromium-os/developer-guide">Chromium OS Developer Guide</a></p>
+
+<h2>Environment</h2>
+
+<pre><code>$ sudo apt-get install git-core gitk git-gui subversion curl
+$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+$ export PATH=`pwd`/depot_tools:"$PATH"   # better to add it into .bashrc
+</code></pre>
+
+<h2>Source</h2>
+
+<pre><code>$ mkdir -p chromiumos &amp;&amp; cd chromiumos
+$ repo init -u https://chromium.googlesource.com/chromiumos/manifest.git --repo-url https://chromium.googlesource.com/external/repo.git
+$ repo sync
+</code></pre>
+
+<h2>Build</h2>
+
+<h4>enter chroot</h4>
+
+<pre><code>$ ./chromite/bin/cros_sdk
+</code></pre>
+
+<h4>board select</h4>
+
+<pre><code>$ export BOARD=x86-generic      # change board depend on your device, pick one from overlays
+$ ./setup_board --board=${BOARD}
+$ ./build_packages --board=${BOARD}
+$ ./build_image --board=${BOARD} --noenable_rootfs_verification dev
+</code></pre>
+
+<h4>download</h4>
+
+<pre><code>$ cros flash usb:// ${BOARD}/latest     # then boot your device by this USB key
+</code></pre>
+
+<h2>Clean</h2>
+
+<pre><code>$ # delete chroot, do *NOT* use rm -rf chroot
+$ cros_sdk --delete
+</code></pre>
+
+<p>TBD</p>
+]]></content>
+  </entry>
+  
+</feed>
