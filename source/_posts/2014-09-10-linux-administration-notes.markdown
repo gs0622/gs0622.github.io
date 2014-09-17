@@ -51,4 +51,16 @@ Here is a memo of Linux workstation administration FAQs
     /dev/sdb:
      Timing O_DIRECT cached reads:   996 MB in  2.00 seconds = 497.87 MB/sec
      Timing O_DIRECT disk reads: 1444 MB in  3.00 seconds = 480.71 MB/sec
+The **-T** is for **cached read test** while **-t** is for **buffered read**.
+Second example with **--direct** which means assigned O_DIRECT flag in test
+
 #### write benchmark
+    $ dd if=/dev/zero of=/tmp/output conv=fdatasync bs=4k count=1M; rm -f /tmp/outut
+    1048576+0 records in
+    1048576+0 records out
+    4294967296 bytes (4.3 GB) copied, 32.0625 s, 134 MB/s
+    $ dd if=/dev/zero of=/ssd/output conv=fdatasync bs=4k count=1M; rm -f /ssd/output
+    1048576+0 records in
+    1048576+0 records out
+    4294967296 bytes (4.3 GB) copied, 8.62645 s, 498 MB/s
+First example I tested my system disk whick is 3.5" HDD, while second one I tested on SSD.
