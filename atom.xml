@@ -4,7 +4,7 @@
   <title><![CDATA[Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-17T09:28:20+08:00</updated>
+  <updated>2014-09-17T11:09:14+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -86,7 +86,22 @@ $ sudo hdparm -Tt --direct /dev/sdb
  Timing O_DIRECT disk reads: 1444 MB in  3.00 seconds = 480.71 MB/sec
 </code></pre>
 
+<p>The <strong>-T</strong> is for <strong>cached read test</strong> while <strong>-t</strong> is for <strong>buffered read</strong>.
+Second example with <strong>&ndash;direct</strong> which means assigned O_DIRECT flag in test</p>
+
 <h4>write benchmark</h4>
+
+<pre><code>$ dd if=/dev/zero of=/tmp/output conv=fdatasync bs=4k count=1M; rm -f /tmp/outut
+1048576+0 records in
+1048576+0 records out
+4294967296 bytes (4.3 GB) copied, 32.0625 s, 134 MB/s
+$ dd if=/dev/zero of=/ssd/output conv=fdatasync bs=4k count=1M; rm -f /ssd/output
+1048576+0 records in
+1048576+0 records out
+4294967296 bytes (4.3 GB) copied, 8.62645 s, 498 MB/s
+</code></pre>
+
+<p>First example I tested my system disk whick is 3.5&#8221; HDD, while second one I tested on SSD.</p>
 ]]></content>
   </entry>
   
