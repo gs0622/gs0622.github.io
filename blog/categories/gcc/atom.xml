@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Gcc | Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/blog/categories/gcc/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-17T19:10:24+08:00</updated>
+  <updated>2014-09-17T19:17:48+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -18,8 +18,12 @@
     <link href="http://gs0622.github.io/blog/2014/08/09/hello/"/>
     <updated>2014-08-09T17:42:31+08:00</updated>
     <id>http://gs0622.github.io/blog/2014/08/09/hello</id>
-    <content type="html"><![CDATA[<p>If you&rsquo;re heavy coder, I believe you will like <a href="http://schlueters.de/colorgcc.html">colorgcc</a>, this tiny script saves your time on digging comlilation errors and warnings.
-Like my example below.</p>
+    <content type="html"><![CDATA[<p>If you&rsquo;re heavy coder, I believe you will like <a href="http://schlueters.de/colorgcc.html">colorgcc</a>, this tiny script saves your time on digging comlilation errors and warnings.</p>
+
+<!--more-->
+
+
+<p>Like my example below.</p>
 
 <pre>
 harrypan@harrypan-E6440:~/workspace$ gcc -g -Wall CountInversion.c

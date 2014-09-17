@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-17T19:10:24+08:00</updated>
+  <updated>2014-09-17T19:17:48+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -19,6 +19,9 @@
     <updated>2014-08-29T13:54:49+08:00</updated>
     <id>http://gs0622.github.io/blog/2014/08/29/git-faq</id>
     <content type="html"><![CDATA[<p>I write this FAQ list for git problems, usually you can google on stackoverflow or somewhere&hellip;</p>
+
+<!--more-->
+
 
 <h2>Change user.name/email on local repository</h2>
 
