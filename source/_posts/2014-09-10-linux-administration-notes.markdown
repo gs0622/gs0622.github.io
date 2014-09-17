@@ -41,3 +41,14 @@ Here is a memo of Linux workstation administration FAQs
     UUID=a1cf9f6e-dxxxx-xxxx-xxxx-xxxxxxx1eccf /mydisk  ext4    errors=remount-ro   0   1
 {%img /images/20140910_find_uuid.png 600 500 find uuid %}
 
+## Evaluate disk I/O performance
+#### read benchmark
+    $ sudo hdparm -Tt /dev/sdb
+    /dev/sdb:
+     Timing cached reads:   30414 MB in  1.99 seconds = 15289.37 MB/sec
+     Timing buffered disk reads: 1046 MB in  3.00 seconds = 348.23 MB/sec
+    $ sudo hdparm -Tt --direct /dev/sdb
+    /dev/sdb:
+     Timing O_DIRECT cached reads:   996 MB in  2.00 seconds = 497.87 MB/sec
+     Timing O_DIRECT disk reads: 1444 MB in  3.00 seconds = 480.71 MB/sec
+#### write benchmark
