@@ -144,6 +144,22 @@ UUID=a1cf9f6e-dxxxx-xxxx-xxxx-xxxxxxx1eccf /mydisk  ext4    errors=remount-ro   
 </code></pre>
 
 <p><img src="/images/20140910_find_uuid.png" width="600" height="500" title="find uuid" ></p>
+
+<h2>Evaluate disk I/O performance</h2>
+
+<h4>read benchmark</h4>
+
+<pre><code>$ sudo hdparm -Tt /dev/sdb
+/dev/sdb:
+ Timing cached reads:   30414 MB in  1.99 seconds = 15289.37 MB/sec
+ Timing buffered disk reads: 1046 MB in  3.00 seconds = 348.23 MB/sec
+$ sudo hdparm -Tt --direct /dev/sdb
+/dev/sdb:
+ Timing O_DIRECT cached reads:   996 MB in  2.00 seconds = 497.87 MB/sec
+ Timing O_DIRECT disk reads: 1444 MB in  3.00 seconds = 480.71 MB/sec
+</code></pre>
+
+<h4>write benchmark</h4>
 </div>
 
 
