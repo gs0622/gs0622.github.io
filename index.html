@@ -9,7 +9,7 @@
   <meta name="author" content="Harry Pan">
 
   
-  <meta name="description" content="Here is a memo of Linux workstation administration FAQs Add new hard disk Find new disk to setup $ sudo fdisk -l Create extend/logical partition &hellip;">
+  <meta name="description" content="Brendan Gregg 於今年八月在LinuxCon所給的演說，內容涵蓋high-level overview到常用基本指令可讓工程師知道如何分析系統效能瓶頸。 Linux Performance Tools from brendangregg 讀者可從基本的uptime, top, ps, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/09/17/linux-performance-tools/">Linux Performance Tools</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-09-17T18:27:04+08:00" pubdate data-updated="true">Sep 17<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.brendangregg.com/">Brendan Gregg</a> 於今年八月在<a href="http://events.linuxfoundation.org/events/linuxcon-north-america">LinuxCon</a>所給的演說，內容涵蓋high-level overview到常用基本指令可讓工程師知道如何分析系統效能瓶頸。</p>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/38175637" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/brendangregg/linux-performance-tools" title="Linux Performance Tools" target="_blank">Linux Performance Tools</a> </strong> from <strong><a href="http://www.slideshare.net/brendangregg" target="_blank">brendangregg</a></strong> </div></p>
+
+<p>讀者可從基本的uptime, top, ps, vmstat, mpstat, free，到進階練習strace/ltrace, tcpdump, netstat, nicstat, pidstat, iotop, slabtop &hellip;etc.</p>
+
+<p>尤其開頭第二頁的big picture做得相當棒，可以當成cheat sheet
+<img class="http" src="http://www.brendangregg.com/Perf/linux_observability_tools.png" width="600" height="500" title="linux_observability_tools" ></p>
+
+<p><strong>SIDE NOTE</strong>: 緣起於我想了解目前的build machine是CPU bound, memory bound, I/O bound, 我用了vmstat, top, free不斷的實驗與觀察，輾轉又發現這篇投影片。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -638,6 +686,10 @@ sudo ln -s /usr/bin/colorgcc g++
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/09/17/linux-performance-tools/">Linux Performance Tools</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2014/09/10/linux-administration-notes/">Linux Administration Notes</a>
       </li>
     
@@ -653,10 +705,6 @@ sudo ln -s /usr/bin/colorgcc g++
         <a href="/blog/2014/08/27/chromium-os-build-notes/">Chromium OS Build Notes</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2014/08/12/mooc-extend-you-passion-in-career/">MOOC: Extend You Passion in Career</a>
-      </li>
-    
   </ul>
 </section>
 <section>
@@ -665,8 +713,9 @@ sudo ln -s /usr/bin/colorgcc g++
     <li class='category'><a href='/blog/categories/chromium-os/'>chromium_os (1)</a></li>
 <li class='category'><a href='/blog/categories/gcc/'>gcc (1)</a></li>
 <li class='category'><a href='/blog/categories/git/'>git (1)</a></li>
-<li class='category'><a href='/blog/categories/linux/'>linux (2)</a></li>
+<li class='category'><a href='/blog/categories/linux/'>linux (3)</a></li>
 <li class='category'><a href='/blog/categories/mooc/'>mooc (1)</a></li>
+<li class='category'><a href='/blog/categories/performance/'>performance (1)</a></li>
 <li class='category'><a href='/blog/categories/ubuntu/'>ubuntu (2)</a></li>
 
   </ul>

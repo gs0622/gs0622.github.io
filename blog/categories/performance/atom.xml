@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Performance | Harry's Graffiti]]></title>
+  <link href="http://gs0622.github.io/blog/categories/performance/atom.xml" rel="self"/>
+  <link href="http://gs0622.github.io/"/>
+  <updated>2014-09-17T19:06:40+08:00</updated>
+  <id>http://gs0622.github.io/</id>
+  <author>
+    <name><![CDATA[Harry Pan]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Performance Tools]]></title>
+    <link href="http://gs0622.github.io/blog/2014/09/17/linux-performance-tools/"/>
+    <updated>2014-09-17T18:27:04+08:00</updated>
+    <id>http://gs0622.github.io/blog/2014/09/17/linux-performance-tools</id>
+    <content type="html"><![CDATA[<p><a href="http://www.brendangregg.com/">Brendan Gregg</a> 於今年八月在<a href="http://events.linuxfoundation.org/events/linuxcon-north-america">LinuxCon</a>所給的演說，內容涵蓋high-level overview到常用基本指令可讓工程師知道如何分析系統效能瓶頸。</p>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/38175637" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/brendangregg/linux-performance-tools" title="Linux Performance Tools" target="_blank">Linux Performance Tools</a> </strong> from <strong><a href="http://www.slideshare.net/brendangregg" target="_blank">brendangregg</a></strong> </div></p>
+
+<p>讀者可從基本的uptime, top, ps, vmstat, mpstat, free，到進階練習strace/ltrace, tcpdump, netstat, nicstat, pidstat, iotop, slabtop &hellip;etc.</p>
+
+<p>尤其開頭第二頁的big picture做得相當棒，可以當成cheat sheet
+<img class="http <a" src="href="http://www.brendangregg.com/Perf/linux_observability_tools.png">http://www.brendangregg.com/Perf/linux_observability_tools.png</a>&#8221; width=&#8221;600&#8221; height=&#8221;500&#8221; title=&#8221;linux_observability_tools&#8221; ></p>
+
+<p><strong>SIDE NOTE</strong>: 緣起於我想了解目前的build machine是CPU bound, memory bound, I/O bound, 我用了vmstat, top, free不斷的實驗與觀察，輾轉又發現這篇投影片。</p>
+]]></content>
+  </entry>
+  
+</feed>
