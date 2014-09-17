@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Performance | Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/blog/categories/performance/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-17T19:07:48+08:00</updated>
+  <updated>2014-09-17T19:10:24+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -24,6 +24,9 @@
 
 
 <p> <div style="margin-bottom:5px"> <strong> <a href="https://www.slideshare.net/brendangregg/linux-performance-tools" title="Linux Performance Tools" target="_blank">Linux Performance Tools</a> </strong> from <strong><a href="http://www.slideshare.net/brendangregg" target="_blank">brendangregg</a></strong> </div></p>
+
+<!--more-->
+
 
 <p>讀者可從基本的uptime, top, ps, vmstat, mpstat, free，到進階練習strace/ltrace, tcpdump, netstat, nicstat, pidstat, iotop, slabtop &hellip;etc.</p>
 
