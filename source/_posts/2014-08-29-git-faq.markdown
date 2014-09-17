@@ -8,6 +8,8 @@ categories: git
 
 I write this FAQ list for git problems, usually you can google on stackoverflow or somewhere...
 
+<!--more-->
+
 ## Change user.name/email on local repository
 Sometimes you want to have different user name and email to override git global setting.
 

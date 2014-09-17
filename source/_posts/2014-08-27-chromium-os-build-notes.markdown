@@ -8,6 +8,8 @@ categories: Chromium_OS Linux
 
 Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all refer to [Chromium OS Developer Guide](http://www.chromium.org/chromium-os/developer-guide)
 
+<!--more-->
+
 ## Environment
     $ sudo apt-get install git-core gitk git-gui subversion curl
     $ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git

@@ -8,6 +8,8 @@ categories: Ubuntu
 
 If you're using Intel I217-LM ethernet on Ubuntu 12.04 LTS, you might get trouble says eth0 is not working on Linux kernel 3.2.x
 
+<!--more-->
+
 ## Problem
 I used 'lshw' and 'ifconfig' ensured it is detected on PCI but not in NetworkManager
 

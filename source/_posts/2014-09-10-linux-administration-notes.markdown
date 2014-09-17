@@ -8,6 +8,8 @@ categories: Linux Ubuntu
 
 Here is a memo of Linux workstation administration FAQs
 
+<!--more-->
+
 ## Add new hard disk
 
 #### Find new disk to setup

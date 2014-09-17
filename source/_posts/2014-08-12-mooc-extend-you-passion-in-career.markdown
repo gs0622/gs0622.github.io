@@ -11,6 +11,8 @@ Recently I found this article is a good summary for MOOC resource (in Mandarin) 
 
 [MOOC不止可汗學院、Coursera和edX：更多大規模開放在線課程介紹](http://www.thenewslens.com/post/36571/)
 
+<!--more-->
+
 In this article, you could pick the MOOC resource in knowledge or in practice, I basically took MIT OCW, Cousera, Udacity, edX, Khan Academy ...etc.
 I love their passion and learn much that I seldom cared about while I was busy.
 Take the LFS101x, Introduction to Linux of edX, as example, I enjoyed it to review my Linux domain knowledge.
