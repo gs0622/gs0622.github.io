@@ -1,0 +1,43 @@
+---
+layout: post
+title: "Build customized kernel"
+date: 2014-09-19 09:28:33 +0800
+comments: true
+categories: Ubuntu Linux
+---
+
+A quick note to build your customized Linux kernel on Ubuntu system.
+Refer to [GitKernelBuild](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)
+
+<!--more-->
+
+## Build kernel
+#### Checkout upstream kernel
+    $ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+#### Copy default config
+    $ cd linux
+    $ cp /boot/config-`uname -r` .config
+    $ make oldconfig
+    $ # (optional) change your kernel flavor continue by 'make menuconfig'
+    $ #            in my case I skip that simply want to build latest kernel
+#### Make kernel packages
+    $ make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-harry
+
+now wait and grab a coffee, it takes time
+after then you will see couple *.deb* file in upper folder
+
+    $ ls -lh ../*.deb | awk '{print $5, "\t", $9}'
+    944K   ../linux-firmware-image-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+    6.4M   ../linux-headers-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+    353M   ../linux-image-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+    35M    ../linux-image-3.17.0-rc5-harry-dbg_3.17.0-rc5-harry-3_amd64.deb
+    750K   ../linux-libc-dev_3.17.0-rc5-harry-3_amd64.deb
+
+#### Install kernel packages
+    $ sudo dpkg -i ../linux-image-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+    $ sudo dpkg -i ../linux-headers-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+
+once done, reboot then cross fingers
+
+    $ sudo reboot
+
