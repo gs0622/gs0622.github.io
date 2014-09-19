@@ -41,3 +41,12 @@ once done, reboot then cross fingers
 
     $ sudo reboot
 
+#### Remove kernel packages
+You might want to remove customized kernel
+
+    $ dpkg -l | grep harry
+    ii  linux-headers-3.17.0-rc5-harry                        3.17.0-rc5-harry-3                                  amd64        Linux kernel headers for 3.17.0-rc5-harry on amd64
+    ii  linux-image-3.17.0-rc5-harry                          3.17.0-rc5-harry-3                                  amd64        Linux kernel, version 3.17.0-rc5-harry
+    $ sudo dpkg --purge linux-headers-3.17.0-rc5-harry
+    $ sudo dpkg --purge linux-image-3.17.0-rc5-harry
+
