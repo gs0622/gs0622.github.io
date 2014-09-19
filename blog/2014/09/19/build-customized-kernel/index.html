@@ -140,6 +140,17 @@ $ sudo dpkg -i ../linux-headers-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
 
 <pre><code>$ sudo reboot
 </code></pre>
+
+<h4>Remove kernel packages</h4>
+
+<p>You might want to remove customized kernel</p>
+
+<pre><code>$ dpkg -l | grep harry
+ii  linux-headers-3.17.0-rc5-harry                        3.17.0-rc5-harry-3                                  amd64        Linux kernel headers for 3.17.0-rc5-harry on amd64
+ii  linux-image-3.17.0-rc5-harry                          3.17.0-rc5-harry-3                                  amd64        Linux kernel, version 3.17.0-rc5-harry
+$ sudo dpkg --purge linux-headers-3.17.0-rc5-harry
+$ sudo dpkg --purge linux-image-3.17.0-rc5-harry
+</code></pre>
 </div>
 
 
