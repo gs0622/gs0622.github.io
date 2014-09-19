@@ -4,7 +4,7 @@
   <title><![CDATA[Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-17T19:17:48+08:00</updated>
+  <updated>2014-09-19T11:28:30+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Build Customized Kernel]]></title>
+    <link href="http://gs0622.github.io/blog/2014/09/19/build-customized-kernel/"/>
+    <updated>2014-09-19T09:28:33+08:00</updated>
+    <id>http://gs0622.github.io/blog/2014/09/19/build-customized-kernel</id>
+    <content type="html"><![CDATA[<p>A quick note to build your customized Linux kernel on Ubuntu system.
+Refer to <a href="https://wiki.ubuntu.com/KernelTeam/GitKernelBuild">GitKernelBuild</a></p>
+
+<!--more-->
+
+
+<h2>Build kernel</h2>
+
+<h4>Checkout upstream kernel</h4>
+
+<pre><code>$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+</code></pre>
+
+<h4>Copy default config</h4>
+
+<pre><code>$ cd linux
+$ cp /boot/config-`uname -r` .config
+$ make oldconfig
+$ # (optional) change your kernel flavor continue by 'make menuconfig'
+$ #            in my case I skip that simply want to build latest kernel
+</code></pre>
+
+<h4>Make kernel packages</h4>
+
+<pre><code>$ make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-harry
+</code></pre>
+
+<p>now wait and grab a coffee, it takes time
+after then you will see couple <em>.deb</em> file in upper folder</p>
+
+<pre><code>$ ls -lh ../*.deb | awk '{print $5, "\t", $9}'
+944K   ../linux-firmware-image-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+6.4M   ../linux-headers-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+353M   ../linux-image-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+35M    ../linux-image-3.17.0-rc5-harry-dbg_3.17.0-rc5-harry-3_amd64.deb
+750K   ../linux-libc-dev_3.17.0-rc5-harry-3_amd64.deb
+</code></pre>
+
+<h4>Install kernel packages</h4>
+
+<pre><code>$ sudo dpkg -i ../linux-image-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+$ sudo dpkg -i ../linux-headers-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+</code></pre>
+
+<p>once done, reboot then cross fingers</p>
+
+<pre><code>$ sudo reboot
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Linux Performance Tools]]></title>

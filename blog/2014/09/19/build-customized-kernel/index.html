@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Chromium OS Build Notes - Harry's Graffiti</title>
+  <title>Build Customized Kernel - Harry's Graffiti</title>
   <meta name="author" content="Harry Pan">
 
   
-  <meta name="description" content="Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all refer to Chromium OS Developer Guide Environment $ sudo apt-get &hellip;">
+  <meta name="description" content="A quick note to build your customized Linux kernel on Ubuntu system.
+Refer to GitKernelBuild Build kernel Checkout upstream kernel $ git clone git:// &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://gs0622.github.io/blog/2014/08/27/chromium-os-build-notes">
+  <link rel="canonical" href="http://gs0622.github.io/blog/2014/09/19/build-customized-kernel">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Harry's Graffiti" type="application/atom+xml">
@@ -68,7 +69,7 @@
   
   <header>
     
-      <h1 class="entry-title">Chromium OS Build Notes</h1>
+      <h1 class="entry-title">Build Customized Kernel</h1>
     
     
       <p class="meta">
@@ -84,59 +85,61 @@
   
 
 
-<time datetime="2014-08-27T20:01:09+08:00" pubdate data-updated="true">Aug 27<sup>th</sup>, 2014</time>
+<time datetime="2014-09-19T09:28:33+08:00" pubdate data-updated="true">Sep 19<sup>th</sup>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all refer to <a href="http://www.chromium.org/chromium-os/developer-guide">Chromium OS Developer Guide</a></p>
+<div class="entry-content"><p>A quick note to build your customized Linux kernel on Ubuntu system.
+Refer to <a href="https://wiki.ubuntu.com/KernelTeam/GitKernelBuild">GitKernelBuild</a></p>
 
 <!--more-->
 
 
-<h2>Environment</h2>
+<h2>Build kernel</h2>
 
-<pre><code>$ sudo apt-get install git-core gitk git-gui subversion curl
-$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-$ export PATH=`pwd`/depot_tools:"$PATH"   # better to add it into .bashrc
+<h4>Checkout upstream kernel</h4>
+
+<pre><code>$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
 </code></pre>
 
-<h2>Source</h2>
+<h4>Copy default config</h4>
 
-<pre><code>$ mkdir -p chromiumos &amp;&amp; cd chromiumos
-$ repo init -u https://chromium.googlesource.com/chromiumos/manifest.git --repo-url https://chromium.googlesource.com/external/repo.git
-$ repo sync
+<pre><code>$ cd linux
+$ cp /boot/config-`uname -r` .config
+$ make oldconfig
+$ # (optional) change your kernel flavor continue by 'make menuconfig'
+$ #            in my case I skip that simply want to build latest kernel
 </code></pre>
 
-<h2>Build</h2>
+<h4>Make kernel packages</h4>
 
-<h4>enter chroot</h4>
-
-<pre><code>$ ./chromite/bin/cros_sdk
+<pre><code>$ make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-harry
 </code></pre>
 
-<h4>board select</h4>
+<p>now wait and grab a coffee, it takes time
+after then you will see couple <em>.deb</em> file in upper folder</p>
 
-<pre><code>$ export BOARD=x86-generic      # change board depend on your device, pick one from overlays
-$ ./setup_board --board=${BOARD}
-$ ./build_packages --board=${BOARD}
-$ ./build_image --board=${BOARD} --noenable_rootfs_verification dev
+<pre><code>$ ls -lh ../*.deb | awk '{print $5, "\t", $9}'
+944K   ../linux-firmware-image-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+6.4M   ../linux-headers-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+353M   ../linux-image-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+35M    ../linux-image-3.17.0-rc5-harry-dbg_3.17.0-rc5-harry-3_amd64.deb
+750K   ../linux-libc-dev_3.17.0-rc5-harry-3_amd64.deb
 </code></pre>
 
-<h4>download</h4>
+<h4>Install kernel packages</h4>
 
-<pre><code>$ cros flash usb:// ${BOARD}/latest     # then boot your device by this USB key
+<pre><code>$ sudo dpkg -i ../linux-image-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
+$ sudo dpkg -i ../linux-headers-3.17.0-rc5-harry_3.17.0-rc5-harry-3_amd64.deb
 </code></pre>
 
-<h2>Clean</h2>
+<p>once done, reboot then cross fingers</p>
 
-<pre><code>$ # delete chroot, do *NOT* use rm -rf chroot
-$ cros_sdk --delete
+<pre><code>$ sudo reboot
 </code></pre>
-
-<p>TBD</p>
 </div>
 
 
@@ -159,12 +162,12 @@ $ cros_sdk --delete
   
 
 
-<time datetime="2014-08-27T20:01:09+08:00" pubdate data-updated="true">Aug 27<sup>th</sup>, 2014</time>
+<time datetime="2014-09-19T09:28:33+08:00" pubdate data-updated="true">Sep 19<sup>th</sup>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/chromium-os/'>chromium_os</a>, <a class='category' href='/blog/categories/linux/'>linux</a>
+    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
   
 </span>
 
@@ -173,7 +176,7 @@ $ cros_sdk --delete
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://gs0622.github.io/blog/2014/08/27/chromium-os-build-notes/" data-via="gs0622" data-counturl="http://gs0622.github.io/blog/2014/08/27/chromium-os-build-notes/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://gs0622.github.io/blog/2014/09/19/build-customized-kernel/" data-via="gs0622" data-counturl="http://gs0622.github.io/blog/2014/09/19/build-customized-kernel/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -186,10 +189,8 @@ $ cros_sdk --delete
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/08/12/mooc-extend-you-passion-in-career/" title="Previous Post: MOOC: Extend you passion in career">&laquo; MOOC: Extend you passion in career</a>
+        <a class="basic-alignment left" href="/blog/2014/09/17/linux-performance-tools/" title="Previous Post: Linux Performance Tools">&laquo; Linux Performance Tools</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/08/29/git-faq/" title="Next Post: Git FAQ">Git FAQ &raquo;</a>
       
     </p>
   </footer>
