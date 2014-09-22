@@ -7,15 +7,16 @@ categories: Ubuntu Linux
 ---
 
 A quick note to build your customized Linux kernel on Ubuntu system.
-Refer to [GitKernelBuild](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)
+Below are refer to [GitKernelBuild](https://wiki.ubuntu.com/KernelTeam/GitKernelBuild)
 
 <!--more-->
 
 ## Build kernel
 #### Checkout upstream kernel
     $ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
-#### Copy default config
     $ cd linux
+    $ git checkout TAG/COMMIT  # up on your case, ex: git checkout v3.17-rc5
+#### Copy default config
     $ cp /boot/config-`uname -r` .config
     $ make oldconfig
     $ # (optional) change your kernel flavor continue by 'make menuconfig'
