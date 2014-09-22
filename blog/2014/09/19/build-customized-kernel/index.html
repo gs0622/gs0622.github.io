@@ -10,7 +10,7 @@
 
   
   <meta name="description" content="A quick note to build your customized Linux kernel on Ubuntu system.
-Refer to GitKernelBuild Build kernel Checkout upstream kernel $ git clone git:// &hellip;">
+Below are refer to GitKernelBuild Build kernel Checkout upstream kernel $ git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,7 +93,7 @@ Refer to GitKernelBuild Build kernel Checkout upstream kernel $ git clone git://
 
 
 <div class="entry-content"><p>A quick note to build your customized Linux kernel on Ubuntu system.
-Refer to <a href="https://wiki.ubuntu.com/KernelTeam/GitKernelBuild">GitKernelBuild</a></p>
+Below are refer to <a href="https://wiki.ubuntu.com/KernelTeam/GitKernelBuild">GitKernelBuild</a></p>
 
 <!--more-->
 
@@ -103,12 +103,13 @@ Refer to <a href="https://wiki.ubuntu.com/KernelTeam/GitKernelBuild">GitKernelBu
 <h4>Checkout upstream kernel</h4>
 
 <pre><code>$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+$ cd linux
+$ git checkout TAG/COMMIT  # up on your case, ex: git checkout v3.17-rc5
 </code></pre>
 
 <h4>Copy default config</h4>
 
-<pre><code>$ cd linux
-$ cp /boot/config-`uname -r` .config
+<pre><code>$ cp /boot/config-`uname -r` .config
 $ make oldconfig
 $ # (optional) change your kernel flavor continue by 'make menuconfig'
 $ #            in my case I skip that simply want to build latest kernel

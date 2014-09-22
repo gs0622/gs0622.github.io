@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-19T13:57:29+08:00</updated>
+  <updated>2014-09-22T20:06:33+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -19,7 +19,7 @@
     <updated>2014-09-19T09:28:33+08:00</updated>
     <id>http://gs0622.github.io/blog/2014/09/19/build-customized-kernel</id>
     <content type="html"><![CDATA[<p>A quick note to build your customized Linux kernel on Ubuntu system.
-Refer to <a href="https://wiki.ubuntu.com/KernelTeam/GitKernelBuild">GitKernelBuild</a></p>
+Below are refer to <a href="https://wiki.ubuntu.com/KernelTeam/GitKernelBuild">GitKernelBuild</a></p>
 
 <!--more-->
 
@@ -29,12 +29,13 @@ Refer to <a href="https://wiki.ubuntu.com/KernelTeam/GitKernelBuild">GitKernelBu
 <h4>Checkout upstream kernel</h4>
 
 <pre><code>$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+$ cd linux
+$ git checkout TAG/COMMIT  # up on your case, ex: git checkout v3.17-rc5
 </code></pre>
 
 <h4>Copy default config</h4>
 
-<pre><code>$ cd linux
-$ cp /boot/config-`uname -r` .config
+<pre><code>$ cp /boot/config-`uname -r` .config
 $ make oldconfig
 $ # (optional) change your kernel flavor continue by 'make menuconfig'
 $ #            in my case I skip that simply want to build latest kernel
