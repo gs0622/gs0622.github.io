@@ -218,6 +218,14 @@ $ tail -n2 .git/config
 [push]
         default = simple
 </code></pre>
+
+<h2>Alias command</h2>
+
+<p>Take short git log as alias command, refer to <a href="http://uberblo.gs/2010/12/git-lol-the-other-git-log">git-lol-the-other-git-log</a></p>
+
+<pre><code>$ git config --global --add alias.lol "log --graph --decorate --pretty=oneline --abbrev-commit --all"
+$ git lol
+</code></pre>
 </div>
 
 

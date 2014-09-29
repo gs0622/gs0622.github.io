@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-22T20:06:33+08:00</updated>
+  <updated>2014-09-29T12:00:40+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -144,6 +144,14 @@ current - push the current branch to a branch of the same name.
 $ tail -n2 .git/config
 [push]
         default = simple
+</code></pre>
+
+<h2>Alias command</h2>
+
+<p>Take short git log as alias command, refer to <a href="http://uberblo.gs/2010/12/git-lol-the-other-git-log">git-lol-the-other-git-log</a></p>
+
+<pre><code>$ git config --global --add alias.lol "log --graph --decorate --pretty=oneline --abbrev-commit --all"
+$ git lol
 </code></pre>
 ]]></content>
   </entry>
