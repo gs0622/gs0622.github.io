@@ -106,3 +106,9 @@ In a nuts shell, set **push.default** as **simple** might be a good start, more 
     [push]
             default = simple
 
+## Alias command
+Take short git log as alias command, refer to [git-lol-the-other-git-log](http://uberblo.gs/2010/12/git-lol-the-other-git-log)
+
+    $ git config --global --add alias.lol "log --graph --decorate --pretty=oneline --abbrev-commit --all"
+    $ git lol
+
