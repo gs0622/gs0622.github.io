@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Chromium_os | Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/blog/categories/chromium-os/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-29T12:00:40+08:00</updated>
+  <updated>2014-09-30T16:55:17+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -63,7 +63,14 @@ $ ./build_image --board=${BOARD} --noenable_rootfs_verification dev
 $ cros_sdk --delete
 </code></pre>
 
-<p>TBD</p>
+<h2>Enlarge ccache size</h2>
+
+<p>ccache is used in chromiumos 2nd build however the default size is 1GB only, you can enlarge it manually</p>
+
+<pre><code>$ ccache --max-size=10G
+$ export CCACHE_DIR=/var/cache/distfiles/ccache
+$ ccache -s
+</code></pre>
 ]]></content>
   </entry>
   

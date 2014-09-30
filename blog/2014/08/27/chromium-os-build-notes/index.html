@@ -136,7 +136,14 @@ $ ./build_image --board=${BOARD} --noenable_rootfs_verification dev
 $ cros_sdk --delete
 </code></pre>
 
-<p>TBD</p>
+<h2>Enlarge ccache size</h2>
+
+<p>ccache is used in chromiumos 2nd build however the default size is 1GB only, you can enlarge it manually</p>
+
+<pre><code>$ ccache --max-size=10G
+$ export CCACHE_DIR=/var/cache/distfiles/ccache
+$ ccache -s
+</code></pre>
 </div>
 
 
