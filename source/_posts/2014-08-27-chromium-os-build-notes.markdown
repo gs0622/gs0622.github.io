@@ -33,7 +33,7 @@ Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all 
     $ cros_sdk --delete
 
 ## Enlarge ccache size
-ccache is used in chromiumos 2nd build however the default size is 1GB only, you can enlarge it manually
+ccache is used to speedup chromiumos 2nd build, typical build will spend 9GB space, however the default size is 1GB only, you can enlarge it manually
 
     $ ccache --max-size=10G
     $ export CCACHE_DIR=/var/cache/distfiles/ccache
