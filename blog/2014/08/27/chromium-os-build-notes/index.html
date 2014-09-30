@@ -138,7 +138,7 @@ $ cros_sdk --delete
 
 <h2>Enlarge ccache size</h2>
 
-<p>ccache is used in chromiumos 2nd build however the default size is 1GB only, you can enlarge it manually</p>
+<p>ccache is used to speedup chromiumos 2nd build, typical build will spend 9GB space, however the default size is 1GB only, you can enlarge it manually</p>
 
 <pre><code>$ ccache --max-size=10G
 $ export CCACHE_DIR=/var/cache/distfiles/ccache

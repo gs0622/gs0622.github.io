@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-30T16:55:17+08:00</updated>
+  <updated>2014-09-30T17:04:15+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -252,7 +252,7 @@ $ cros_sdk --delete
 
 <h2>Enlarge ccache size</h2>
 
-<p>ccache is used in chromiumos 2nd build however the default size is 1GB only, you can enlarge it manually</p>
+<p>ccache is used to speedup chromiumos 2nd build, typical build will spend 9GB space, however the default size is 1GB only, you can enlarge it manually</p>
 
 <pre><code>$ ccache --max-size=10G
 $ export CCACHE_DIR=/var/cache/distfiles/ccache
