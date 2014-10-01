@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-30T17:04:15+08:00</updated>
+  <updated>2014-10-01T19:09:23+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Realtek Rt8192cu Linux Driver]]></title>
+    <link href="http://gs0622.github.io/blog/2014/10/01/realtek-rt8192cu-linux-driver/"/>
+    <updated>2014-10-01T17:52:04+08:00</updated>
+    <id>http://gs0622.github.io/blog/2014/10/01/realtek-rt8192cu-linux-driver</id>
+    <content type="html"><![CDATA[<p>I got ASUS Wireless-N USB dongle couple months ago, thought it is supported in Linux, however I have no luck to enable it no matter on Ubuntu 12.04 nor 14.04 LTS.</p>
+
+<!--more-->
+
+
+<p>As the box cover claimed Linux supported, someday I put the dongle on my Ubuntu machines then found it has no reaction while plugged in.</p>
+
+<p><img src="/images/20141001_asus_box.jpg" width="300" height="200" title="asus box" >
+<img src="/images/20141001_asus_dongle.jpg" width="300" height="200" title="asus dongle" ></p>
+
+<p>I dug into both CD-ROM and Realtek website, well, driver source is quite old, even not able to build in new kernel (3.13+)</p>
+
+<p>Occasionally I found there are lovely maintainers <a href="https://github.com/dz0ny">Janez Troha</a> and <a href="https://github.com/skeller">Stefan Keller</a>, they did great jobs hosting a project maintaining rt8192cu driver, and further more applied <a href="http://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support">DKMS</a> method.</p>
+
+<p>Here is short note to enable the Wifi dongle by <a href="https://github.com/dz0ny/rt8192cu">Realtek driver for 8192cu / 8188cu devices</a></p>
+
+<h4>Prerequisites</h4>
+
+<pre><code>$ sudo apt-get install git build-essential linux-headers-generic dkms
+</code></pre>
+
+<h4>Get driver source</h4>
+
+<pre><code>$ git clone https://github.com/dz0ny/rt8192cu.git --depth 1
+$ cd rt8192cu
+</code></pre>
+
+<h4>Easy install (DKMS)</h4>
+
+<pre><code>$ sudo make dkms
+</code></pre>
+
+<h4>Hard install (traditional, non-DKMS)</h4>
+
+<pre><code>$ sudo make install
+</code></pre>
+
+<p>-enjoy</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Build Customized Kernel]]></title>

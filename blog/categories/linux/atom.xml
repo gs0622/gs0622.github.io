@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2014-09-30T17:04:15+08:00</updated>
+  <updated>2014-10-01T19:09:23+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Realtek Rt8192cu Linux Driver]]></title>
+    <link href="http://gs0622.github.io/blog/2014/10/01/realtek-rt8192cu-linux-driver/"/>
+    <updated>2014-10-01T17:52:04+08:00</updated>
+    <id>http://gs0622.github.io/blog/2014/10/01/realtek-rt8192cu-linux-driver</id>
+    <content type="html"><![CDATA[<p>I got ASUS Wireless-N USB dongle couple months ago, thought it is supported in Linux, however I have no luck to enable it no matter on Ubuntu 12.04 nor 14.04 LTS.</p>
+
+<!--more-->
+
+
+<p>As the box cover claimed Linux supported, someday I put the dongle on my Ubuntu machines then found it has no reaction while plugged in.</p>
+
+<p><img src="/images/20141001_asus_box.jpg" width="300" height="200" title="asus box" >
+<img src="/images/20141001_asus_dongle.jpg" width="300" height="200" title="asus dongle" ></p>
+
+<p>I dug into both CD-ROM and Realtek website, well, driver source is quite old, even not able to build in new kernel (3.13+)</p>
+
+<p>Occasionally I found there are lovely maintainers <a href="https://github.com/dz0ny">Janez Troha</a> and <a href="https://github.com/skeller">Stefan Keller</a>, they did great jobs hosting a project maintaining rt8192cu driver, and further more applied <a href="http://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support">DKMS</a> method.</p>
+
+<p>Here is short note to enable the Wifi dongle by <a href="https://github.com/dz0ny/rt8192cu">Realtek driver for 8192cu / 8188cu devices</a></p>
+
+<h4>Prerequisites</h4>
+
+<pre><code>$ sudo apt-get install git build-essential linux-headers-generic dkms
+</code></pre>
+
+<h4>Get driver source</h4>
+
+<pre><code>$ git clone https://github.com/dz0ny/rt8192cu.git --depth 1
+$ cd rt8192cu
+</code></pre>
+
+<h4>Easy install (DKMS)</h4>
+
+<pre><code>$ sudo make dkms
+</code></pre>
+
+<h4>Hard install (traditional, non-DKMS)</h4>
+
+<pre><code>$ sudo make install
+</code></pre>
+
+<p>-enjoy</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Build Customized Kernel]]></title>
@@ -201,63 +247,59 @@ $ dd if=/dev/zero of=/ssd/output conv=fdatasync bs=4k count=1M; rm -f /ssd/outpu
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Chromium OS Build Notes]]></title>
-    <link href="http://gs0622.github.io/blog/2014/08/27/chromium-os-build-notes/"/>
-    <updated>2014-08-27T20:01:09+08:00</updated>
-    <id>http://gs0622.github.io/blog/2014/08/27/chromium-os-build-notes</id>
-    <content type="html"><![CDATA[<p>Basically this is short notes about building Chromium OS (a.k.a Chrome OS), all refer to <a href="http://www.chromium.org/chromium-os/developer-guide">Chromium OS Developer Guide</a></p>
+    <title type="html"><![CDATA[Intel I217-LM Ethernet on Ubuntu 12.04]]></title>
+    <link href="http://gs0622.github.io/blog/2014/09/09/intel-i217-lm-ethernet-on-ubuntu-12-dot-04-lts/"/>
+    <updated>2014-09-09T19:04:52+08:00</updated>
+    <id>http://gs0622.github.io/blog/2014/09/09/intel-i217-lm-ethernet-on-ubuntu-12-dot-04-lts</id>
+    <content type="html"><![CDATA[<p>If you&rsquo;re using Intel I217-LM ethernet on Ubuntu 12.04 LTS, you might get trouble says eth0 is not working on Linux kernel 3.2.x</p>
 
 <!--more-->
 
 
-<h2>Environment</h2>
+<h2>Problem</h2>
 
-<pre><code>$ sudo apt-get install git-core gitk git-gui subversion curl
-$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-$ export PATH=`pwd`/depot_tools:"$PATH"   # better to add it into .bashrc
+<p>I used &lsquo;lshw&rsquo; and &lsquo;ifconfig&rsquo; ensured it is detected on PCI but not in NetworkManager</p>
+
+<pre><code>$ sudo lshw -C network
+  *-network
+   description: Ethernet interface
+   product: Ethernet Connection I217-LM
+   vendor: Intel Corporation
+   physical id: 19
+   bus info: pci@0000:00:19.0
+   logical name: eth0
+...
+$ ifconfig
+lo      Link encap:Local Loopback
+        inet addr:127.0.0.1  Mask:255.0.0.0
+        inet6 addr: ::1/128 Scope:Host
+        UP LOOPBACK RUNNING  MTU:16436  Metric:1
+        RX packets:223 errors:0 dropped:0 overruns:0 frame:0
+        TX packets:223 errors:0 dropped:0 overruns:0 carrier:0
+        collisions:0 txqueuelen:0
+        RX bytes:141166 (141.1 KB)  TX bytes:141166 (141.1 KB)
+wlan0   Link encap:Ethernet  HWaddr xx:xx:xx:xx:xx:xx
+        UP BROADCAST MULTICAST  MTU:1500  Metric:1
+        RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+        TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+        collisions:0 txqueuelen:1000
+        RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
 </code></pre>
 
-<h2>Source</h2>
+<h2>Solution</h2>
 
-<pre><code>$ mkdir -p chromiumos &amp;&amp; cd chromiumos
-$ repo init -u https://chromium.googlesource.com/chromiumos/manifest.git --repo-url https://chromium.googlesource.com/external/repo.git
-$ repo sync
+<p>By <a href="http://askubuntu.com/questions/310442/intel-i217lm-ethernet-controller-not-detected-by-ubuntu-12-04lts?#315922">StackOverflow</a> I found potential cause due to I217 driver available since Linux 3.5.x however my Ubuntu 12.04 still using 3.2.0-29, probably it could be found in linux-backports-modules however I did not go the way.</p>
+
+<p>I followed the hint to <a href="http://www.intel.com/support/network/sb/cs-032514.htm">Intel e1000e drivers page</a>, get the source then built on my laptop</p>
+
+<pre><code>$ tar zxf e1000e-&lt;x.x.x&gt;.tar.gz
+$ cd e1000e-&lt;x.x.x&gt;/src/
+$ sudo make install
+$ modprobe e1000e
+$ ifconfig
 </code></pre>
 
-<h2>Build</h2>
-
-<h4>enter chroot</h4>
-
-<pre><code>$ ./chromite/bin/cros_sdk
-</code></pre>
-
-<h4>board select</h4>
-
-<pre><code>$ export BOARD=x86-generic      # change board depend on your device, pick one from overlays
-$ ./setup_board --board=${BOARD}
-$ ./build_packages --board=${BOARD}
-$ ./build_image --board=${BOARD} --noenable_rootfs_verification dev
-</code></pre>
-
-<h4>download</h4>
-
-<pre><code>$ cros flash usb:// ${BOARD}/latest     # then boot your device by this USB key
-</code></pre>
-
-<h2>Clean</h2>
-
-<pre><code>$ # delete chroot, do *NOT* use rm -rf chroot
-$ cros_sdk --delete
-</code></pre>
-
-<h2>Enlarge ccache size</h2>
-
-<p>ccache is used to speedup chromiumos 2nd build, typical build will spend 9GB space, however the default size is 1GB only, you can enlarge it manually</p>
-
-<pre><code>$ ccache --max-size=10G
-$ export CCACHE_DIR=/var/cache/distfiles/ccache
-$ ccache -s
-</code></pre>
+<p>Have fun on your eth0</p>
 ]]></content>
   </entry>
   
