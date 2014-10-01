@@ -3,7 +3,7 @@ layout: post
 title: "Intel I217-LM ethernet on Ubuntu 12.04"
 date: 2014-09-09 19:04:52 +0800
 comments: true
-categories: Ubuntu
+categories: Ubuntu Linux
 ---
 
 If you're using Intel I217-LM ethernet on Ubuntu 12.04 LTS, you might get trouble says eth0 is not working on Linux kernel 3.2.x
