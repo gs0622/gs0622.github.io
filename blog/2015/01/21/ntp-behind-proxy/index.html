@@ -5,11 +5,13 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Realtek Rt8192cu Linux Driver - Harry's Graffiti</title>
+  <title>NTP Behind Proxy - Harry's Graffiti</title>
   <meta name="author" content="Harry Pan">
 
   
-  <meta name="description" content="I got ASUS Wireless-N USB dongle couple months ago, thought it is supported in Linux, however I have no luck to enable it no matter on Ubuntu 12.04 &hellip;">
+  <meta name="description" content="Adventitiously I observed my desktop cannot do NTP update, suspecting
+it is because of proxy. I did some triage then google. Credit/refer to
+How to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://gs0622.github.io/blog/2014/10/01/realtek-rt8192cu-linux-driver">
+  <link rel="canonical" href="http://gs0622.github.io/blog/2015/01/21/ntp-behind-proxy">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Harry's Graffiti" type="application/atom+xml">
@@ -68,7 +70,7 @@
   
   <header>
     
-      <h1 class="entry-title">Realtek Rt8192cu Linux Driver</h1>
+      <h1 class="entry-title">NTP Behind Proxy</h1>
     
     
       <p class="meta">
@@ -84,51 +86,31 @@
   
 
 
-<time datetime="2014-10-01T17:52:04+08:00" pubdate data-updated="true">Oct 1<sup>st</sup>, 2014</time>
+<time datetime="2015-01-21T17:32:43+08:00" pubdate data-updated="true">Jan 21<sup>st</sup>, 2015</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I got ASUS Wireless-N USB dongle couple months ago, thought it is supported in Linux, however I have no luck to enable it no matter on Ubuntu 12.04 nor 14.04 LTS.</p>
+<div class="entry-content"><p>Adventitiously I observed my desktop cannot do NTP update, suspecting
+it is because of proxy. I did some triage then google.</p>
+
+<p>Credit/refer to
+<a href="http://superuser.com/questions/307158/how-to-use-ntpdate-behind-a-proxy">How to use ntpdate behind a proxy?</a></p>
 
 <!--more-->
 
 
-<p>As the box cover claimed Linux supported, someday I put the dongle on my Ubuntu machines then found it has no reaction while plugged in.</p>
+<p>By triage, switch off NTP, modify time, then turn on NTP via system date/time setting is not working
+    $ dmesg | tail
+    [1328911.777687] systemd-timedated[8385]: Set NTP to disabled
+    [1328918.627650] systemd-timedated[8385]: Changed local time to Wed Jan 21 17:26:35 2015
+    [1328953.967353] systemd-timedated[8385]: Set NTP to enabled</p>
 
-<p><img src="/images/20141001_asus_box.jpg" width="300" height="200" title="asus box" >
-<img src="/images/20141001_asus_dongle.jpg" width="300" height="200" title="asus dongle" ></p>
-
-<p>I dug into both CD-ROM and Realtek website, well, driver source is quite old, even not able to build in new kernel (3.13+)</p>
-
-<p>Occasionally I found there are lovely maintainers <a href="https://github.com/dz0ny">Janez Troha</a> and <a href="https://github.com/skeller">Stefan Keller</a>, they did great jobs hosting a project maintaining rt8192cu driver, and further more applied <a href="http://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support">DKMS</a> method.</p>
-
-<p>Here is short note to enable the Wifi dongle by <a href="https://github.com/dz0ny/rt8192cu">Realtek driver for 8192cu / 8188cu devices</a></p>
-
-<h4>Prerequisites</h4>
-
-<pre><code>$ sudo apt-get install git build-essential linux-headers-generic dkms
-</code></pre>
-
-<h4>Get driver source</h4>
-
-<pre><code>$ git clone https://github.com/dz0ny/rt8192cu.git --depth 1
-$ cd rt8192cu
-</code></pre>
-
-<h4>Easy install (DKMS)</h4>
-
-<pre><code>$ sudo make dkms
-</code></pre>
-
-<h4>Hard install (traditional, non-DKMS)</h4>
-
-<pre><code>$ sudo make install
-</code></pre>
-
-<p>-enjoy</p>
+<p>Turns out there is wonderful conjuration using http header
+    $ sudo date -s &ldquo;$(curl -sD - google.com | grep ^Date: | cut -d&#8217; &lsquo; -f3-6)Z&rdquo;
+    Wed Jan 21 18:45:45 CST 2015</p>
 </div>
 
 
@@ -151,12 +133,12 @@ $ cd rt8192cu
   
 
 
-<time datetime="2014-10-01T17:52:04+08:00" pubdate data-updated="true">Oct 1<sup>st</sup>, 2014</time>
+<time datetime="2015-01-21T17:32:43+08:00" pubdate data-updated="true">Jan 21<sup>st</sup>, 2015</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
+    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/ntpdate/'>ntpdate</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
   
 </span>
 
@@ -165,7 +147,7 @@ $ cd rt8192cu
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://gs0622.github.io/blog/2014/10/01/realtek-rt8192cu-linux-driver/" data-via="gs0622" data-counturl="http://gs0622.github.io/blog/2014/10/01/realtek-rt8192cu-linux-driver/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://gs0622.github.io/blog/2015/01/21/ntp-behind-proxy/" data-via="gs0622" data-counturl="http://gs0622.github.io/blog/2015/01/21/ntp-behind-proxy/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -178,10 +160,8 @@ $ cd rt8192cu
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/09/19/build-customized-kernel/" title="Previous Post: Build customized kernel">&laquo; Build customized kernel</a>
+        <a class="basic-alignment left" href="/blog/2015/01/20/power-of-two-table/" title="Previous Post: power of two table">&laquo; power of two table</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015/01/20/power-of-two-table/" title="Next Post: power of two table">power of two table &raquo;</a>
       
     </p>
   </footer>

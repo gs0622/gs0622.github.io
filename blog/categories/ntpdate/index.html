@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Realtek Rt8192cu Linux Driver - Harry's Graffiti</title>
+  <title>Category: Ntpdate - Harry's Graffiti</title>
   <meta name="author" content="Harry Pan">
 
   
-  <meta name="description" content="I got ASUS Wireless-N USB dongle couple months ago, thought it is supported in Linux, however I have no luck to enable it no matter on Ubuntu 12.04 &hellip;">
+  <meta name="description" content="Category: ntpdate">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://gs0622.github.io/blog/2014/10/01/realtek-rt8192cu-linux-driver">
+  <link rel="canonical" href="http://gs0622.github.io/blog/categories/ntpdate">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Harry's Graffiti" type="application/atom+xml">
@@ -64,127 +64,35 @@
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Realtek Rt8192cu Linux Driver</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-10-01T17:52:04+08:00" pubdate data-updated="true">Oct 1<sup>st</sup>, 2014</time>
-        
-      </p>
+    <h1 class="entry-title">Category: Ntpdate</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-<div class="entry-content"><p>I got ASUS Wireless-N USB dongle couple months ago, thought it is supported in Linux, however I have no luck to enable it no matter on Ubuntu 12.04 nor 14.04 LTS.</p>
 
-<!--more-->
+  
+  <h2>2015</h2>
+
+<article>
+  
+<h1><a href="/blog/2015/01/21/ntp-behind-proxy/">NTP Behind Proxy</a></h1>
+<time datetime="2015-01-21T17:32:43+08:00" pubdate><span class='month'>Jan</span> <span class='day'>21</span> <span class='year'>2015</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/ntpdate/'>ntpdate</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a></span>
+</footer>
 
 
-<p>As the box cover claimed Linux supported, someday I put the dongle on my Ubuntu machines then found it has no reaction while plugged in.</p>
+</article>
 
-<p><img src="/images/20141001_asus_box.jpg" width="300" height="200" title="asus box" >
-<img src="/images/20141001_asus_dongle.jpg" width="300" height="200" title="asus dongle" ></p>
-
-<p>I dug into both CD-ROM and Realtek website, well, driver source is quite old, even not able to build in new kernel (3.13+)</p>
-
-<p>Occasionally I found there are lovely maintainers <a href="https://github.com/dz0ny">Janez Troha</a> and <a href="https://github.com/skeller">Stefan Keller</a>, they did great jobs hosting a project maintaining rt8192cu driver, and further more applied <a href="http://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support">DKMS</a> method.</p>
-
-<p>Here is short note to enable the Wifi dongle by <a href="https://github.com/dz0ny/rt8192cu">Realtek driver for 8192cu / 8188cu devices</a></p>
-
-<h4>Prerequisites</h4>
-
-<pre><code>$ sudo apt-get install git build-essential linux-headers-generic dkms
-</code></pre>
-
-<h4>Get driver source</h4>
-
-<pre><code>$ git clone https://github.com/dz0ny/rt8192cu.git --depth 1
-$ cd rt8192cu
-</code></pre>
-
-<h4>Easy install (DKMS)</h4>
-
-<pre><code>$ sudo make dkms
-</code></pre>
-
-<h4>Hard install (traditional, non-DKMS)</h4>
-
-<pre><code>$ sudo make install
-</code></pre>
-
-<p>-enjoy</p>
 </div>
 
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Harry Pan</span></span>
-
-      
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-10-01T17:52:04+08:00" pubdate data-updated="true">Oct 1<sup>st</sup>, 2014</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://gs0622.github.io/blog/2014/10/01/realtek-rt8192cu-linux-driver/" data-via="gs0622" data-counturl="http://gs0622.github.io/blog/2014/10/01/realtek-rt8192cu-linux-driver/" >Tweet</a>
-  
-  
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2014/09/19/build-customized-kernel/" title="Previous Post: Build customized kernel">&laquo; Build customized kernel</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2015/01/20/power-of-two-table/" title="Next Post: power of two table">power of two table &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
 </div>

@@ -4,7 +4,7 @@
   <title><![CDATA[Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2015-01-20T18:58:48+08:00</updated>
+  <updated>2015-01-21T18:47:57+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[NTP Behind Proxy]]></title>
+    <link href="http://gs0622.github.io/blog/2015/01/21/ntp-behind-proxy/"/>
+    <updated>2015-01-21T17:32:43+08:00</updated>
+    <id>http://gs0622.github.io/blog/2015/01/21/ntp-behind-proxy</id>
+    <content type="html"><![CDATA[<p>Adventitiously I observed my desktop cannot do NTP update, suspecting
+it is because of proxy. I did some triage then google.</p>
+
+<p>Credit/refer to
+<a href="http://superuser.com/questions/307158/how-to-use-ntpdate-behind-a-proxy">How to use ntpdate behind a proxy?</a></p>
+
+<!--more-->
+
+
+<p>By triage, switch off NTP, modify time, then turn on NTP via system date/time setting is not working
+    $ dmesg | tail
+    [1328911.777687] systemd-timedated[8385]: Set NTP to disabled
+    [1328918.627650] systemd-timedated[8385]: Changed local time to Wed Jan 21 17:26:35 2015
+    [1328953.967353] systemd-timedated[8385]: Set NTP to enabled</p>
+
+<p>Turns out there is wonderful conjuration using http header
+    $ sudo date -s &ldquo;$(curl -sD - google.com | grep ^Date: | cut -d&#8217; &lsquo; -f3-6)Z&rdquo;
+    Wed Jan 21 18:45:45 CST 2015</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Power of Two Table]]></title>

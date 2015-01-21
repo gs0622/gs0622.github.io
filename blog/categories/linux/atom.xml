@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2015-01-20T18:58:48+08:00</updated>
+  <updated>2015-01-21T18:47:57+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[NTP Behind Proxy]]></title>
+    <link href="http://gs0622.github.io/blog/2015/01/21/ntp-behind-proxy/"/>
+    <updated>2015-01-21T17:32:43+08:00</updated>
+    <id>http://gs0622.github.io/blog/2015/01/21/ntp-behind-proxy</id>
+    <content type="html"><![CDATA[<p>Adventitiously I observed my desktop cannot do NTP update, suspecting
+it is because of proxy. I did some triage then google.</p>
+
+<p>Credit/refer to
+<a href="http://superuser.com/questions/307158/how-to-use-ntpdate-behind-a-proxy">How to use ntpdate behind a proxy?</a></p>
+
+<!--more-->
+
+
+<p>By triage, switch off NTP, modify time, then turn on NTP via system date/time setting is not working
+    $ dmesg | tail
+    [1328911.777687] systemd-timedated[8385]: Set NTP to disabled
+    [1328918.627650] systemd-timedated[8385]: Changed local time to Wed Jan 21 17:26:35 2015
+    [1328953.967353] systemd-timedated[8385]: Set NTP to enabled</p>
+
+<p>Turns out there is wonderful conjuration using http header
+    $ sudo date -s &ldquo;$(curl -sD - google.com | grep ^Date: | cut -d&#8217; &lsquo; -f3-6)Z&rdquo;
+    Wed Jan 21 18:45:45 CST 2015</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Realtek Rt8192cu Linux Driver]]></title>
@@ -243,63 +269,6 @@ $ dd if=/dev/zero of=/ssd/output conv=fdatasync bs=4k count=1M; rm -f /ssd/outpu
 </code></pre>
 
 <p>First example I tested my system disk whick is 3.5&#8221; HDD, while second one I tested on SSD.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Intel I217-LM Ethernet on Ubuntu 12.04]]></title>
-    <link href="http://gs0622.github.io/blog/2014/09/09/intel-i217-lm-ethernet-on-ubuntu-12-dot-04-lts/"/>
-    <updated>2014-09-09T19:04:52+08:00</updated>
-    <id>http://gs0622.github.io/blog/2014/09/09/intel-i217-lm-ethernet-on-ubuntu-12-dot-04-lts</id>
-    <content type="html"><![CDATA[<p>If you&rsquo;re using Intel I217-LM ethernet on Ubuntu 12.04 LTS, you might get trouble says eth0 is not working on Linux kernel 3.2.x</p>
-
-<!--more-->
-
-
-<h2>Problem</h2>
-
-<p>I used &lsquo;lshw&rsquo; and &lsquo;ifconfig&rsquo; ensured it is detected on PCI but not in NetworkManager</p>
-
-<pre><code>$ sudo lshw -C network
-  *-network
-   description: Ethernet interface
-   product: Ethernet Connection I217-LM
-   vendor: Intel Corporation
-   physical id: 19
-   bus info: pci@0000:00:19.0
-   logical name: eth0
-...
-$ ifconfig
-lo      Link encap:Local Loopback
-        inet addr:127.0.0.1  Mask:255.0.0.0
-        inet6 addr: ::1/128 Scope:Host
-        UP LOOPBACK RUNNING  MTU:16436  Metric:1
-        RX packets:223 errors:0 dropped:0 overruns:0 frame:0
-        TX packets:223 errors:0 dropped:0 overruns:0 carrier:0
-        collisions:0 txqueuelen:0
-        RX bytes:141166 (141.1 KB)  TX bytes:141166 (141.1 KB)
-wlan0   Link encap:Ethernet  HWaddr xx:xx:xx:xx:xx:xx
-        UP BROADCAST MULTICAST  MTU:1500  Metric:1
-        RX packets:0 errors:0 dropped:0 overruns:0 frame:0
-        TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
-        collisions:0 txqueuelen:1000
-        RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
-</code></pre>
-
-<h2>Solution</h2>
-
-<p>By <a href="http://askubuntu.com/questions/310442/intel-i217lm-ethernet-controller-not-detected-by-ubuntu-12-04lts?#315922">StackOverflow</a> I found potential cause due to I217 driver available since Linux 3.5.x however my Ubuntu 12.04 still using 3.2.0-29, probably it could be found in linux-backports-modules however I did not go the way.</p>
-
-<p>I followed the hint to <a href="http://www.intel.com/support/network/sb/cs-032514.htm">Intel e1000e drivers page</a>, get the source then built on my laptop</p>
-
-<pre><code>$ tar zxf e1000e-&lt;x.x.x&gt;.tar.gz
-$ cd e1000e-&lt;x.x.x&gt;/src/
-$ sudo make install
-$ modprobe e1000e
-$ ifconfig
-</code></pre>
-
-<p>Have fun on your eth0</p>
 ]]></content>
   </entry>
   
