@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Harry's Graffiti]]></title>
   <link href="http://gs0622.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://gs0622.github.io/"/>
-  <updated>2015-01-21T19:06:29+08:00</updated>
+  <updated>2015-01-27T16:19:12+08:00</updated>
   <id>http://gs0622.github.io/</id>
   <author>
     <name><![CDATA[Harry Pan]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Change Dark Blue on Directory While Ls]]></title>
+    <link href="http://gs0622.github.io/blog/2015/01/27/change-dark-blue-on-directory-while-ls/"/>
+    <updated>2015-01-27T09:11:48+08:00</updated>
+    <id>http://gs0622.github.io/blog/2015/01/27/change-dark-blue-on-directory-while-ls</id>
+    <content type="html"><![CDATA[<p>It is harmful to eyes seeing dark blue directory list</p>
+
+<p>For some reason it is not a big issue in local terminal.
+However it happens in remote login through ssh and then do &lsquo;ls&rsquo; command.</p>
+
+<!--more-->
+
+
+<p>A simple way to fix this to change $LS_COLOR environment variable.
+Find the &lsquo;di&rsquo;, then either change it or append at end to override it.</p>
+
+<pre><code>$ echo $LS_COLORS
+$ rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:
+  or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:
+  *.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:
+  *.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:
+  *.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:
+  *.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:
+  *.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:
+  *.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:
+  *.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:
+  *.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:
+  *.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:
+  *.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:
+  *.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:
+  *.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:
+  *.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:
+  *.oga=00;36:*.spx=00;36:*.xspf=00;36:
+$ export LS_COLORS="$LS_COLORS:di=01;36:"
+</code></pre>
+
+<p>In my case, I override &lsquo;di&rsquo; color from dark blue (34) to sky blue (36).</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[NTP Behind Proxy]]></title>
@@ -178,101 +218,6 @@ $ sudo dpkg --purge linux-image-3.17.0-rc5-harry
 <img class="http <a" src="href="http://www.brendangregg.com/Perf/linux_observability_tools.png">http://www.brendangregg.com/Perf/linux_observability_tools.png</a>&#8221; width=&#8221;600&#8221; height=&#8221;500&#8221; title=&#8221;linux_observability_tools&#8221; ></p>
 
 <p><strong>SIDE NOTE</strong>: 緣起於我想了解目前的build machine是CPU bound, memory bound, I/O bound, 我用了vmstat, top, free, tmux不斷的實驗與觀察，輾轉又發現這篇投影片。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Linux Administration Notes]]></title>
-    <link href="http://gs0622.github.io/blog/2014/09/10/linux-administration-notes/"/>
-    <updated>2014-09-10T11:28:23+08:00</updated>
-    <id>http://gs0622.github.io/blog/2014/09/10/linux-administration-notes</id>
-    <content type="html"><![CDATA[<p>Here is a memo of Linux workstation administration FAQs</p>
-
-<!--more-->
-
-
-<h2>Add new hard disk</h2>
-
-<h4>Find new disk to setup</h4>
-
-<pre><code>$ sudo fdisk -l
-</code></pre>
-
-<p><img src="/images/20140910_list_partition.png" width="600" height="500" title="find new disk to setup" ></p>
-
-<h4>Create extend/logical partition</h4>
-
-<pre><code>Command: n -&gt; e -&gt; enter (default) -&gt; enter (default)
-</code></pre>
-
-<p><img src="/images/20140910_ext_partition.png" width="600" height="500" title="create extended partition" ></p>
-
-<pre><code>Command: n -&gt; l -&gt; enter (default) -&gt; enter (default)
-</code></pre>
-
-<p><img src="/images/20140910_logical_partition.png" width="600" height="500" title="create logical partition" ></p>
-
-<h4>Exame then write partition table to disk</h4>
-
-<pre><code>Command: p (print) -&gt; w (write)
-</code></pre>
-
-<p><img src="/images/20140910_write_table.png" width="600" height="500" title="exame then write partition table" ></p>
-
-<h4>Format new disk to ext4</h4>
-
-<pre><code>$ sudo mkfs.ext4 /dev/sdb5  # Notice! change sdb to sdX depend on your case
-</code></pre>
-
-<p><img src="/images/20140910_format_disk.png" width="600" height="500" title="exame partition table" ></p>
-
-<h4>Mount new disk</h4>
-
-<pre><code>$ mkdir -p /mydisk
-$ chmod 777 /mydisk
-$ mount -t ext4 /dev/sdb5 /mydisk
-</code></pre>
-
-<h4>Add disk into fstab by UUID</h4>
-
-<pre><code>$ sudo blkid
-$ sudo vim /etc/fstab   # add 128-bit UUID of /dev/sdb5 into last line
-$ tail -n 1 /etc/fstab
-UUID=a1cf9f6e-dxxxx-xxxx-xxxx-xxxxxxx1eccf /mydisk  ext4    errors=remount-ro   0   1
-</code></pre>
-
-<p><img src="/images/20140910_find_uuid.png" width="600" height="500" title="find uuid" ></p>
-
-<h2>Evaluate disk I/O performance</h2>
-
-<h4>read benchmark</h4>
-
-<pre><code>$ sudo hdparm -Tt /dev/sdb
-/dev/sdb:
- Timing cached reads:   30414 MB in  1.99 seconds = 15289.37 MB/sec
- Timing buffered disk reads: 1046 MB in  3.00 seconds = 348.23 MB/sec
-$ sudo hdparm -Tt --direct /dev/sdb
-/dev/sdb:
- Timing O_DIRECT cached reads:   996 MB in  2.00 seconds = 497.87 MB/sec
- Timing O_DIRECT disk reads: 1444 MB in  3.00 seconds = 480.71 MB/sec
-</code></pre>
-
-<p>The <strong>-T</strong> is for <strong>cached read test</strong> while <strong>-t</strong> is for <strong>buffered read</strong>.
-Second example with <strong>&ndash;direct</strong> which means assigned O_DIRECT flag in test</p>
-
-<h4>write benchmark</h4>
-
-<pre><code>$ dd if=/dev/zero of=/tmp/output conv=fdatasync bs=4k count=1M; rm -f /tmp/outut
-1048576+0 records in
-1048576+0 records out
-4294967296 bytes (4.3 GB) copied, 32.0625 s, 134 MB/s
-$ dd if=/dev/zero of=/ssd/output conv=fdatasync bs=4k count=1M; rm -f /ssd/output
-1048576+0 records in
-1048576+0 records out
-4294967296 bytes (4.3 GB) copied, 8.62645 s, 498 MB/s
-</code></pre>
-
-<p>First example I tested my system disk whick is 3.5&#8221; HDD, while second one I tested on SSD.</p>
 ]]></content>
   </entry>
   
